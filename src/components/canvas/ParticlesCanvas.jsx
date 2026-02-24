@@ -1,17 +1,17 @@
 import { useEffect, useRef } from 'react'
 
-const COUNT  = 43
+const COUNT = 43
 const LINK_D = 140
 
-export default function ParticlesCanvas() {
+export default function ParticlesCanvas({ visible }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const ctx    = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d')
 
     const resize = () => {
-      canvas.width  = window.innerWidth
+      canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
     resize()
@@ -23,11 +23,11 @@ export default function ParticlesCanvas() {
 
     // Initialise particles with random normalised positions + tiny random velocity
     const pts = Array.from({ length: COUNT }, () => ({
-      x:     Math.random(),
-      y:     Math.random(),
-      vx:    (Math.random() - 0.5) * 0.0008,
-      vy:    (Math.random() - 0.5) * 0.0008,
-      r:     Math.random() * 1.8 + 0.5,
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.0008,
+      vy: (Math.random() - 0.5) * 0.0008,
+      r: Math.random() * 1.8 + 0.5,
       amber: Math.random() < 0.6,
     }))
 
@@ -58,7 +58,7 @@ export default function ParticlesCanvas() {
       // Draw connection lines between nearby particles
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
-          const a  = pts[i], b = pts[j]
+          const a = pts[i], b = pts[j]
           const dx = (a.x - b.x) * canvas.width
           const dy = (a.y - b.y) * canvas.height
           const dist = Math.hypot(dx, dy)
@@ -68,7 +68,7 @@ export default function ParticlesCanvas() {
             if (alpha <= 0) continue
             ctx.beginPath()
             ctx.strokeStyle = `rgba(103,232,249,${alpha})`
-            ctx.lineWidth   = 1
+            ctx.lineWidth = 1
             ctx.moveTo(a.x * canvas.width, a.y * canvas.height - off)
             ctx.lineTo(b.x * canvas.width, b.y * canvas.height - off)
             ctx.stroke()
@@ -92,7 +92,11 @@ export default function ParticlesCanvas() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 1 }}
+      style={{
+        zIndex: 1,
+        opacity: visible ? 1 : 0,
+        transition: 'opacity 1.5s ease',
+      }}
     />
   )
 }

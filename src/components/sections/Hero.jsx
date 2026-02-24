@@ -1,12 +1,12 @@
 import { useTranslation } from '../../i18n/useTranslation'
 import { ButtonPrimary, ButtonOutline } from '../ui/Button'
 
-export default function Hero() {
+export default function Hero({ ready }) {
   const { HERO, SITE, UI } = useTranslation()
   const delay = (ms) => ({ animationDelay: `${ms}ms` })
   const anim = (ms) => ({
     opacity: 0,
-    animation: `fadeUp 0.7s ease ${ms}ms forwards`,
+    animation: ready ? `fadeUp 0.7s ease ${ms}ms forwards` : 'none',
   })
 
   return (
@@ -22,7 +22,7 @@ export default function Hero() {
 
           {/* System badge */}
           <div
-            className="inline-flex items-center gap-2.5 font-mono text-xs tracking-widest uppercase text-cream border border-accent px-3.5 py-2 mb-10 bg-bg/60 backdrop-blur-sm"
+            className="inline-flex items-center gap-2.5 font-mono text-xs tracking-widest uppercase text-cream border border-white/[0.15] px-3.5 py-2 mb-10 bg-bg/60 backdrop-blur-sm"
             style={anim(100)}
           >
             <span className="text-accent font-bold">&gt;_</span>

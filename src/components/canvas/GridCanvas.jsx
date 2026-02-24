@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react'
 
 const CELL = 60
 
-export default function GridCanvas() {
+export default function GridCanvas({ onReady }) {
   const canvasRef = useRef(null)
+  const reportedReady = useRef(false)
 
   useEffect(() => {
     const gc = canvasRef.current
@@ -12,7 +13,6 @@ export default function GridCanvas() {
     const startTime = performance.now()
 
     const render = (time) => {
-      // Calculate elapsed time
       const elapsed = time - startTime
 
       gc.width = window.innerWidth
@@ -21,32 +21,43 @@ export default function GridCanvas() {
       const cols = Math.ceil(gc.width / CELL) + 1
       const rows = Math.ceil(gc.height / CELL) + 1
 
-      // Animation timeline:
+      // Timeline:
       // 0-400ms: nothing
-      // 400-1400ms: dots fade in (stronger accent)
-      // 1400-2400ms: lines fade in (stronger accent)
-      // 2400-3400ms: transition into steady background state
+      // 400-1400ms: dots fade in (orange)
+      // 1400-2400ms: lines fade in (orange)
+      // 2400-3400ms: Colors transition to white, opacity drops. Trigger UI spawn.
 
-      // Dots opacity: peak at 0.6, then settle to 0.25 (same color as lines)
+      let r = 232, g = 114, b = 12
       let dotsAlpha = 0
+      let linesAlpha = 0
+
       if (elapsed > 400 && elapsed <= 2400) {
         dotsAlpha = Math.min((elapsed - 400) / 1000, 1) * 0.6
-      } else if (elapsed > 2400) {
-        // Transition from 0.6 to 0.15 over 1000ms
-        dotsAlpha = 0.6 - (Math.min((elapsed - 2400) / 1000, 1) * 0.45)
       }
-
-      // Lines opacity: starts at 1400ms, peaks at 0.3, settles to 0.15
-      let linesAlpha = 0
       if (elapsed > 1400 && elapsed <= 2400) {
         linesAlpha = Math.min((elapsed - 1400) / 1000, 1) * 0.3
-      } else if (elapsed > 2400) {
-        // Transition from 0.3 to 0.15 over 1000ms
-        linesAlpha = 0.3 - (Math.min((elapsed - 2400) / 1000, 1) * 0.15)
+      }
+
+      if (elapsed > 2400) {
+        const t = Math.min((elapsed - 2400) / 1000, 1)
+
+        // Lerp color to white (255, 255, 255)
+        r = Math.round(232 + (255 - 232) * t)
+        g = Math.round(114 + (255 - 114) * t)
+        b = Math.round(12 + (255 - 12) * t)
+
+        dotsAlpha = 0.6 - (0.6 - 0.15) * t
+        linesAlpha = 0.3 - (0.3 - 0.05) * t
+
+        // Trigger the rest of the UI to spawn as the fade to white begins
+        if (!reportedReady.current && onReady) {
+          reportedReady.current = true
+          onReady()
+        }
       }
 
       // Draw lines
-      ctx.strokeStyle = `rgba(232,114,12,${linesAlpha})`
+      ctx.strokeStyle = `rgba(${r},${g},${b},${linesAlpha})`
       ctx.lineWidth = 0.5
 
       for (let c = 0; c <= cols; c++) {
@@ -55,24 +66,23 @@ export default function GridCanvas() {
         ctx.lineTo(c * CELL, gc.height)
         ctx.stroke()
       }
-      for (let r = 0; r <= rows; r++) {
+      for (let r_idx = 0; r_idx <= rows; r_idx++) {
         ctx.beginPath()
-        ctx.moveTo(0, r * CELL)
-        ctx.lineTo(gc.width, r * CELL)
+        ctx.moveTo(0, r_idx * CELL)
+        ctx.lineTo(gc.width, r_idx * CELL)
         ctx.stroke()
       }
 
       // Draw dots
-      ctx.fillStyle = `rgba(232,114,12,${dotsAlpha})`
-      for (let r = 0; r <= rows; r++) {
+      ctx.fillStyle = `rgba(${r},${g},${b},${dotsAlpha})`
+      for (let r_idx = 0; r_idx <= rows; r_idx++) {
         for (let c = 0; c <= cols; c++) {
           ctx.beginPath()
-          ctx.arc(c * CELL, r * CELL, 1.2, 0, Math.PI * 2)
+          ctx.arc(c * CELL, r_idx * CELL, 1.2, 0, Math.PI * 2)
           ctx.fill()
         }
       }
 
-      // Continue animating until 4000ms
       if (elapsed < 4000) {
         animationFrameId = requestAnimationFrame(render)
       }
@@ -80,11 +90,9 @@ export default function GridCanvas() {
 
     animationFrameId = requestAnimationFrame(render)
 
-    // Maintain grid on window resize after animation finishes
     const handleResize = () => {
-      const t = performance.now()
-      if ((t - startTime) > 4000) {
-        render(startTime + 5000) // Force final steady state
+      if ((performance.now() - startTime) > 4000) {
+        render(startTime + 5000)
       }
     }
     window.addEventListener('resize', handleResize)
@@ -93,7 +101,7 @@ export default function GridCanvas() {
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [onReady])
 
   return (
     <canvas

@@ -17,6 +17,7 @@ import { useScrollReveal } from './hooks/useScrollReveal'
 import { useCustomCursor } from './hooks/useCustomCursor'
 
 function AppContent() {
+  const [ready, setReady] = useState(false)
 
   // Activate scroll reveal and cursor after intro
   useScrollReveal()
@@ -28,15 +29,15 @@ function AppContent() {
       <CustomCursor />
 
       {/* Fixed background layers (below all content, above nothing) */}
-      <GridCanvas />
-      <ParticlesCanvas />
+      <GridCanvas onReady={() => setReady(true)} />
+      <ParticlesCanvas visible={ready} />
 
       {/* Navigation */}
-      <Navbar />
+      <Navbar visible={ready} />
 
       {/* Page sections */}
       <main>
-        <Hero />
+        <Hero ready={ready} />
         <Marquee />
         <About />
         <Services />
