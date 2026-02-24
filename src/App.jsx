@@ -17,14 +17,6 @@ import { useScrollReveal } from './hooks/useScrollReveal'
 import { useCustomCursor } from './hooks/useCustomCursor'
 
 function AppContent() {
-  const [introVisible, setIntroVisible] = useState(true)
-  const [ready, setReady] = useState(false)
-
-  // Called when intro animation finishes
-  const handleIntroComplete = () => {
-    setReady(true)
-    setTimeout(() => setIntroVisible(false), 100)
-  }
 
   // Activate scroll reveal and cursor after intro
   useScrollReveal()
@@ -35,19 +27,16 @@ function AppContent() {
       {/* Custom cursor */}
       <CustomCursor />
 
-      {/* Intro overlay — unmounted after fade */}
-      {introVisible && <IntroOverlay onComplete={handleIntroComplete} />}
-
       {/* Fixed background layers (below all content, above nothing) */}
-      <GridCanvas visible={ready} />
+      <GridCanvas />
       <ParticlesCanvas />
 
       {/* Navigation */}
-      <Navbar visible={ready} />
+      <Navbar />
 
       {/* Page sections */}
       <main>
-        <Hero ready={ready} />
+        <Hero />
         <Marquee />
         <About />
         <Services />

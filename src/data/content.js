@@ -31,10 +31,10 @@ export const HERO = {
     { text: 'Costruisco ecosistemi', accent: true },
     { text: 'di vendita.', accent: true },
   ],
-  sub: 'Nessuna formula magica. Solo dati, copywriting chirurgico e strategie di posizionamento spietate per far scalare il tuo <strong>brand su Amazon</strong>.',
+  sub: 'Nessuna formula magica. Solo dati, sistemi e strategie di posizionamento per far scalare il tuo <strong>brand su Amazon</strong>.',
   stats: [
     { num: '5+', label: 'Anni di\nesperienza' },
-    { num: '2+', label: 'Anni su\nAmazon' },
+    { num: '3+', label: 'Anni su\nAmazon' },
   ],
   ctas: [
     { label: 'Consulenza gratuita →', href: `mailto:${SITE.email}`, primary: true },
@@ -47,19 +47,19 @@ export const MARQUEE_ITEMS = [
   'Account Management',
   'Listing Optimization',
   'Brand Registry',
-  'Copywriting Strategico',
-  'Digital Marketing',
-  'Data Analysis',
-  'Second Brain',
+  'Data Analytics',
+  'AI Automation',
+  'n8n',
+  'Claude Code',
 ]
 
 export const ABOUT = {
   label: '01 —',
-  sectionTitle: 'Identikit Strategico',
+  sectionTitle: 'IDENTIKIT',
   heading: ['Un po\' informatico.', 'Un po\' marketer.'],
   paragraphs: [
-    'Non approccio il marketing come un\'arte astratta, ma come un <strong>sistema ingegneristico</strong>. Da 5 anni analizzo il comportamento degli utenti e applico modelli matematici per scalare gli e-commerce.',
-    'Centralizzo ogni esperimento, dato e fallimento nel mio <a href="#" target="_blank">Second Brain</a>: un archivio di conoscenze che mi permette di collegare i puntini dove gli altri vedono solo caos.',
+    'Non approccio il marketing come un\'arte astratta, ma come un <strong>sistema ingegneristico</strong>. Da 5 anni analizzo il comportamento degli utenti e applico sistemi per scalare.',
+    'Ogni mio framework, dato e fallimento utile finisce nel mio <a href="#" target="_blank">Second Brain</a>: un archivio che mi permette di collegare i puntini dove gli altri vedono solo caos.',
   ],
 }
 
@@ -67,29 +67,27 @@ export const ABOUT = {
 // types: 'prompt' | 'ok' | 'warn' | 'spacer' | 'json'
 // json uses <k>key</k> and <s>string value</s> tags
 export const TERMINAL_LINES = [
-  { type: 'prompt', text: '> Avvio sistema Napolitano_OS v2.5...' },
+  { type: 'prompt', text: `> Avvio sistema Daniele_OS v${((new Date() - new Date('2001-09-17')) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1)}...` },
   { type: 'spacer', text: '' },
-  { type: 'ok', text: '[BOOT] Core marketing engine: OK' },
+  { type: 'ok', text: '[BOOT] Core engine: OK' },
   { type: 'ok', text: '[BOOT] Algoritmo A9 Amazon: caricato' },
-  { type: 'ok', text: '[BOOT] Modulo PPC ottimizzatore: attivo' },
+  { type: 'ok', text: '[BOOT] Automazioni n8n: attive' },
   { type: 'ok', text: '[BOOT] Second Brain sync: completato' },
-  { type: 'warn', text: '[INFO] 5 anni di pattern riconosciuti' },
+  { type: 'warn', text: '[INFO] 5 anni di pattern trovati' },
   { type: 'spacer', text: '' },
   { type: 'prompt', text: '> Query: "skill_matrix"' },
   { type: 'spacer', text: '' },
-  { type: 'json', text: '{ <k>"amazon"</k>: [<s>"A9 Algorithm"</s>, <s>"PPC"</s>, <s>"Listing"</s>],' },
-  { type: 'json', text: '  <k>"copy"</k>: [<s>"Strategico"</s>, <s>"Data-driven"</s>],' },
-  { type: 'json', text: '  <k>"tools"</k>: [<s>"Helium10"</s>, <s>"Notion"</s>, <s>"GA4"</s>],' },
-  { type: 'json', text: '  <k>"mindset"</k>: <s>"Ingegneristico"</s> }' },
+  { type: 'json', text: '{ <k>"amazon"</k>: [<s>"Listing Optimization"</s>, <s>"PPC"</s>, <s>"A+"</s>, <s>"Brand Registry"</s>, <s>"Reporting"</s>],' },
+  { type: 'json', text: '  <k>"tools"</k>: [<s>"Helium10"</s>, <s>"Claude Code"</s>, <s>"n8n"</s>, <s>"Skalebid LLM"</s>] }' },
   { type: 'spacer', text: '' },
   { type: 'prompt', text: '> In attesa di input' },
 ]
 
 export const SERVICES = {
   label: '02 —',
-  sectionTitle: 'Cosa Posso Fare Per Te',
+  sectionTitle: 'MODULI OPERATIVI',
   heading: ['Servizi su misura', 'per il tuo business'],
-  subtext: 'Non lavoro con soluzioni preconfezionate. Analizzo la tua situazione specifica e costruisco una strategia che funziona davvero.',
+  subtext: 'Non offro servizi standard. Implemento protocolli e framework specifici per dominare la tua nicchia.',
   cards: [
     {
       num: '01',

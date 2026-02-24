@@ -30,10 +30,10 @@ export const HERO = {
         { text: 'I build sales', accent: true },
         { text: 'ecosystems.', accent: true },
     ],
-    sub: "No magic formulas. Just data, surgical copywriting and relentless positioning strategies to scale your <strong>brand on Amazon</strong>.",
+    sub: "No magic formulas. Just data, systems and positioning strategies to scale your <strong>brand on Amazon</strong>.",
     stats: [
         { num: '5+', label: 'Years of\nexperience' },
-        { num: '2+', label: 'Years on\nAmazon' },
+        { num: '3+', label: 'Years on\nAmazon' },
     ],
     ctas: [
         { label: 'Free consultation →', href: `mailto:${SITE.email}`, primary: true },
@@ -46,46 +46,44 @@ export const MARQUEE_ITEMS = [
     'Account Management',
     'Listing Optimization',
     'Brand Registry',
-    'Strategic Copywriting',
-    'Digital Marketing',
-    'Data Analysis',
-    'Second Brain',
+    'Data Analytics',
+    'AI Automation',
+    'n8n',
+    'Claude Code',
 ]
 
 export const ABOUT = {
     label: '01 —',
-    sectionTitle: 'Strategic Profile',
+    sectionTitle: 'IDENTIKIT',
     heading: ['Part engineer.', 'Part marketer.'],
     paragraphs: [
-        "I don't approach marketing as an abstract art, but as an <strong>engineering system</strong>. For 5 years I've been analyzing user behavior and applying mathematical models to scale e-commerce businesses.",
-        'I centralize every experiment, data point and failure in my <a href="#" target="_blank">Second Brain</a>: a knowledge archive that lets me connect the dots where others only see chaos.',
+        "I don't approach marketing as an abstract art, but as an <strong>engineering system</strong>. For 5 years I've been analyzing user behavior and applying systems to scale.",
+        'Every useful framework, data point, and failure ends up in my <a href="#" target="_blank">Second Brain</a>: an archive that lets me connect the dots where others only see chaos.',
     ],
 }
 
 export const TERMINAL_LINES = [
-    { type: 'prompt', text: '> Booting Napolitano_OS v2.5...' },
+    { type: 'prompt', text: `> Booting Daniele_OS v${((new Date() - new Date('2001-09-17')) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1)}...` },
     { type: 'spacer', text: '' },
-    { type: 'ok', text: '[BOOT] Core marketing engine: OK' },
+    { type: 'ok', text: '[BOOT] Core engine: OK' },
     { type: 'ok', text: '[BOOT] Amazon A9 Algorithm: loaded' },
-    { type: 'ok', text: '[BOOT] PPC optimizer module: active' },
+    { type: 'ok', text: '[BOOT] n8n Automations: active' },
     { type: 'ok', text: '[BOOT] Second Brain sync: complete' },
-    { type: 'warn', text: '[INFO] 5 years of patterns recognized' },
+    { type: 'warn', text: '[INFO] 5 years of patterns found' },
     { type: 'spacer', text: '' },
     { type: 'prompt', text: '> Query: "skill_matrix"' },
     { type: 'spacer', text: '' },
-    { type: 'json', text: '{ <k>"amazon"</k>: [<s>"A9 Algorithm"</s>, <s>"PPC"</s>, <s>"Listing"</s>],' },
-    { type: 'json', text: '  <k>"copy"</k>: [<s>"Strategic"</s>, <s>"Data-driven"</s>],' },
-    { type: 'json', text: '  <k>"tools"</k>: [<s>"Helium10"</s>, <s>"Notion"</s>, <s>"GA4"</s>],' },
-    { type: 'json', text: '  <k>"mindset"</k>: <s>"Engineering"</s> }' },
+    { type: 'json', text: '{ <k>"amazon"</k>: [<s>"Listing Optimization"</s>, <s>"PPC"</s>, <s>"A+"</s>, <s>"Brand Registry"</s>, <s>"Reporting"</s>],' },
+    { type: 'json', text: '  <k>"tools"</k>: [<s>"Helium10"</s>, <s>"Claude Code"</s>, <s>"n8n"</s>, <s>"Skalebid LLM"</s>] }' },
     { type: 'spacer', text: '' },
     { type: 'prompt', text: '> Awaiting input' },
 ]
 
 export const SERVICES = {
     label: '02 —',
-    sectionTitle: 'What I Can Do For You',
+    sectionTitle: 'OPERATIONAL MODULES',
     heading: ['Tailored services', 'for your business'],
-    subtext: "I don't work with cookie-cutter solutions. I analyze your specific situation and build a strategy that actually works.",
+    subtext: "I don't offer standard services. I implement specific protocols and frameworks to dominate your niche.",
     cards: [
         {
             num: '01',

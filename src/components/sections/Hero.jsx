@@ -1,12 +1,12 @@
 import { useTranslation } from '../../i18n/useTranslation'
 import { ButtonPrimary, ButtonOutline } from '../ui/Button'
 
-export default function Hero({ ready }) {
+export default function Hero() {
   const { HERO, SITE, UI } = useTranslation()
   const delay = (ms) => ({ animationDelay: `${ms}ms` })
   const anim = (ms) => ({
     opacity: 0,
-    animation: ready ? `fadeUp 0.7s ease ${ms}ms forwards` : 'none',
+    animation: `fadeUp 0.7s ease ${ms}ms forwards`,
   })
 
   return (
@@ -22,8 +22,8 @@ export default function Hero({ ready }) {
 
           {/* System badge */}
           <div
-            className="inline-flex items-center gap-2.5 font-mono text-xs tracking-widest uppercase text-cream border border-white/[0.15] px-3.5 py-2 mb-10 bg-bg/60 backdrop-blur-sm"
-            style={anim(1200)}
+            className="inline-flex items-center gap-2.5 font-mono text-xs tracking-widest uppercase text-cream border border-accent px-3.5 py-2 mb-10 bg-bg/60 backdrop-blur-sm"
+            style={anim(100)}
           >
             <span className="text-accent font-bold">&gt;_</span>
             {UI.systemOnline}
@@ -35,7 +35,7 @@ export default function Hero({ ready }) {
           </div>
 
           {/* Headline */}
-          <div style={anim(1400)}>
+          <div style={anim(300)}>
             {HERO.lines.map((line, i) => (
               <span
                 key={i}
@@ -50,12 +50,12 @@ export default function Hero({ ready }) {
           {/* Subtext */}
           <p
             className="mt-8 text-base leading-relaxed text-muted font-light max-w-lg"
-            style={anim(1650)}
+            style={anim(500)}
             dangerouslySetInnerHTML={{ __html: HERO.sub.replace('<strong>', '<strong class="text-cream font-medium">') }}
           />
 
           {/* CTAs */}
-          <div className="flex gap-4 mt-11 flex-wrap" style={anim(1850)}>
+          <div className="flex gap-4 mt-11 flex-wrap" style={anim(700)}>
             <ButtonPrimary href={HERO.ctas[0].href}>
               {HERO.ctas[0].label}
             </ButtonPrimary>
@@ -68,7 +68,7 @@ export default function Hero({ ready }) {
         {/* RIGHT — stats column */}
         <div
           className="flex flex-col gap-10 flex-shrink-0"
-          style={anim(2050)}
+          style={anim(900)}
         >
           {HERO.stats.map((stat, i) => (
             <div key={i}>
@@ -87,7 +87,7 @@ export default function Hero({ ready }) {
       {/* Scroll indicator */}
       <div
         className="absolute bottom-8 right-16 z-10 font-mono text-[0.65rem] tracking-[0.15em] uppercase text-muted flex items-center gap-3"
-        style={{ writingMode: 'vertical-rl', ...anim(2300) }}
+        style={{ writingMode: 'vertical-rl', ...anim(1100) }}
       >
         {UI.scroll}
         <span
