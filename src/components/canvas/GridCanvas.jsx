@@ -101,7 +101,7 @@ export default function GridCanvas({ onReady }) {
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener('resize', handleResize)
     }
-  }, [onReady])
+  }, [])
 
   return (
     <canvas
