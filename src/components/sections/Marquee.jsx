@@ -1,9 +1,10 @@
-import { MARQUEE_ITEMS } from '../../data/content'
-
-// Double the items so the seamless loop works
-const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
+import { useTranslation } from '../../i18n/useTranslation'
 
 export default function Marquee() {
+  const { MARQUEE_ITEMS } = useTranslation()
+  // Double the items so the seamless loop works
+  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
+
   return (
     <div
       className="overflow-hidden border-t border-b border-border py-5 relative z-10"

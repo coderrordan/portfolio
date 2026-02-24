@@ -1,7 +1,8 @@
-import { HERO, SITE } from '../../data/content'
+import { useTranslation } from '../../i18n/useTranslation'
 import { ButtonPrimary, ButtonOutline } from '../ui/Button'
 
 export default function Hero({ ready }) {
+  const { HERO, SITE, UI } = useTranslation()
   const delay = (ms) => ({ animationDelay: `${ms}ms` })
   const anim = (ms) => ({
     opacity: 0,
@@ -25,11 +26,11 @@ export default function Hero({ ready }) {
             style={anim(1200)}
           >
             <span className="text-accent font-bold">&gt;_</span>
-            SYSTEM ONLINE
+            {UI.systemOnline}
             <span className="text-muted">//</span>
             DANIELE NAPOLITANO
             <span className="text-muted">//</span>
-            AMAZON SPECIALIST
+            {UI.amazonSpecialist}
             <span className="text-accent animate-[blink_1s_step-end_infinite]">_</span>
           </div>
 
@@ -55,11 +56,11 @@ export default function Hero({ ready }) {
 
           {/* CTAs */}
           <div className="flex gap-4 mt-11 flex-wrap" style={anim(1850)}>
-            <ButtonPrimary href={`mailto:${SITE.email}`}>
-              Consulenza gratuita <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+            <ButtonPrimary href={HERO.ctas[0].href}>
+              {HERO.ctas[0].label}
             </ButtonPrimary>
-            <ButtonOutline href="#services">
-              Scopri i servizi →
+            <ButtonOutline href={HERO.ctas[1].href}>
+              {HERO.ctas[1].label}
             </ButtonOutline>
           </div>
         </div>
@@ -88,7 +89,7 @@ export default function Hero({ ready }) {
         className="absolute bottom-8 right-16 z-10 font-mono text-[0.65rem] tracking-[0.15em] uppercase text-muted flex items-center gap-3"
         style={{ writingMode: 'vertical-rl', ...anim(2300) }}
       >
-        Scroll
+        {UI.scroll}
         <span
           className="block w-px h-16 hero-scroll-line"
           style={{ background: 'linear-gradient(to bottom, #6b6560, transparent)' }}

@@ -1,7 +1,9 @@
-import { PROCESS } from '../../data/content'
+import { useTranslation } from '../../i18n/useTranslation'
 import SectionLabel from '../ui/SectionLabel'
 
 export default function Process() {
+  const { PROCESS } = useTranslation()
+
   return (
     <section
       id="process"

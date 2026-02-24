@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { NEWSLETTER } from '../../data/content'
+import { useTranslation } from '../../i18n/useTranslation'
 import SectionLabel from '../ui/SectionLabel'
 import { ButtonPrimary } from '../ui/Button'
 
 export default function Newsletter() {
+  const { NEWSLETTER, UI } = useTranslation()
   const [sent, setSent] = useState(false)
   const [email, setEmail] = useState('')
 
@@ -47,7 +48,7 @@ export default function Newsletter() {
             className="flex-shrink-0"
             style={{ clipPath: 'none', borderRadius: 0 }}
           >
-            {sent ? 'Grazie! ✓' : NEWSLETTER.cta}
+            {sent ? UI.thankYou : NEWSLETTER.cta}
           </ButtonPrimary>
         </form>
         <p className="font-mono text-[0.72rem] tracking-wide text-muted mt-3">

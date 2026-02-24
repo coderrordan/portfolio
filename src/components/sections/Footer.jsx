@@ -1,6 +1,8 @@
-import { SITE } from '../../data/content'
+import { useTranslation } from '../../i18n/useTranslation'
 
 export default function Footer() {
+  const { SITE, UI } = useTranslation()
+
   return (
     <footer
       className="border-t border-border px-16 py-12 flex items-center justify-between gap-8 flex-wrap relative z-10"
@@ -11,7 +13,7 @@ export default function Footer() {
       </div>
 
       <div className="font-mono text-[0.65rem] tracking-wide text-muted text-center">
-        &copy; {SITE.year} &middot; Handcrafted in Italy &middot; p.iva {SITE.vat}
+        &copy; {SITE.year} &middot; {UI.footerCrafted} &middot; p.iva {SITE.vat}
         <br />
         <a
           href={`mailto:${SITE.email}`}
@@ -23,9 +25,9 @@ export default function Footer() {
 
       <div className="flex gap-6">
         {[
-          { label: 'YouTube',   href: SITE.socials.youtube   },
+          { label: 'YouTube', href: SITE.socials.youtube },
           { label: 'Instagram', href: SITE.socials.instagram },
-          { label: 'LinkedIn',  href: SITE.socials.linkedin  },
+          { label: 'LinkedIn', href: SITE.socials.linkedin },
         ].map(({ label, href }) => (
           <a
             key={label}

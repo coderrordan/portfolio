@@ -1,7 +1,9 @@
-import { CTA_SECTION } from '../../data/content'
+import { useTranslation } from '../../i18n/useTranslation'
 import { ButtonPrimary, ButtonOutline } from '../ui/Button'
 
 export default function CtaSection() {
+  const { CTA_SECTION } = useTranslation()
+
   return (
     <section
       id="cta"

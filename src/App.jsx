@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react'
-import IntroOverlay     from './components/sections/IntroOverlay'
-import Navbar           from './components/sections/Navbar'
-import Hero             from './components/sections/Hero'
-import Marquee          from './components/sections/Marquee'
-import About            from './components/sections/About'
-import Services         from './components/sections/Services'
-import Process          from './components/sections/Process'
-import CtaSection       from './components/sections/CtaSection'
-import Newsletter       from './components/sections/Newsletter'
-import Footer           from './components/sections/Footer'
-import GridCanvas       from './components/canvas/GridCanvas'
-import ParticlesCanvas  from './components/canvas/ParticlesCanvas'
-import CustomCursor     from './components/ui/CustomCursor'
-import { useScrollReveal }  from './hooks/useScrollReveal'
-import { useCustomCursor }  from './hooks/useCustomCursor'
+import { LanguageProvider } from './i18n/LanguageContext'
+import IntroOverlay from './components/sections/IntroOverlay'
+import Navbar from './components/sections/Navbar'
+import Hero from './components/sections/Hero'
+import Marquee from './components/sections/Marquee'
+import About from './components/sections/About'
+import Services from './components/sections/Services'
+import Process from './components/sections/Process'
+import CtaSection from './components/sections/CtaSection'
+import Newsletter from './components/sections/Newsletter'
+import Footer from './components/sections/Footer'
+import GridCanvas from './components/canvas/GridCanvas'
+import ParticlesCanvas from './components/canvas/ParticlesCanvas'
+import CustomCursor from './components/ui/CustomCursor'
+import { useScrollReveal } from './hooks/useScrollReveal'
+import { useCustomCursor } from './hooks/useCustomCursor'
 
-export default function App() {
+function AppContent() {
   const [introVisible, setIntroVisible] = useState(true)
-  const [ready, setReady]               = useState(false)
+  const [ready, setReady] = useState(false)
 
   // Called when intro animation finishes
   const handleIntroComplete = () => {
@@ -46,7 +47,7 @@ export default function App() {
 
       {/* Page sections */}
       <main>
-        <Hero    ready={ready} />
+        <Hero ready={ready} />
         <Marquee />
         <About />
         <Services />
@@ -57,5 +58,13 @@ export default function App() {
 
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   )
 }

@@ -1,4 +1,4 @@
-import { SERVICES, SITE } from '../../data/content'
+import { useTranslation } from '../../i18n/useTranslation'
 import SectionLabel from '../ui/SectionLabel'
 import { ButtonPrimary } from '../ui/Button'
 
@@ -12,9 +12,9 @@ function ServiceCard({ card }) {
       <div className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
 
       <div className="font-serif text-[5rem] font-black leading-none mb-4 transition-colors duration-300"
-           style={{ color: 'rgba(232,114,12,0.08)' }}
-           onMouseEnter={e => e.currentTarget.style.color = 'rgba(232,114,12,0.15)'}
-           onMouseLeave={e => e.currentTarget.style.color = 'rgba(232,114,12,0.08)'}
+        style={{ color: 'rgba(232,114,12,0.08)' }}
+        onMouseEnter={e => e.currentTarget.style.color = 'rgba(232,114,12,0.15)'}
+        onMouseLeave={e => e.currentTarget.style.color = 'rgba(232,114,12,0.08)'}
       >
         {card.num}
       </div>
@@ -35,7 +35,7 @@ function ServiceCard({ card }) {
   )
 }
 
-function CtaCard() {
+function CtaCard({ services, site }) {
   return (
     <div
       className="p-12 flex flex-col justify-between min-h-[300px] border"
@@ -46,20 +46,22 @@ function CtaCard() {
     >
       <div>
         <h3 className="font-serif text-3xl font-bold leading-tight text-cream mb-4">
-          {SERVICES.cta.heading}
+          {services.cta.heading}
         </h3>
         <p className="text-muted text-sm leading-relaxed font-light mb-8">
-          {SERVICES.cta.text}
+          {services.cta.text}
         </p>
       </div>
-      <ButtonPrimary href={`mailto:${SITE.email}`}>
-        {SERVICES.cta.label}
+      <ButtonPrimary href={`mailto:${site.email}`}>
+        {services.cta.label}
       </ButtonPrimary>
     </div>
   )
 }
 
 export default function Services() {
+  const { SERVICES, SITE } = useTranslation()
+
   return (
     <section
       id="services"
@@ -94,7 +96,7 @@ export default function Services() {
           <ServiceCard card={SERVICES.cards[0]} />
         </div>
         <div className="reveal delay-2">
-          <CtaCard />
+          <CtaCard services={SERVICES} site={SITE} />
         </div>
         <div className="reveal delay-1" style={{ gridColumn: '1 / -1' }}>
           <ServiceCard card={SERVICES.cards[1]} />
