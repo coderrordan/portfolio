@@ -8,7 +8,6 @@ export default function CtaSection() {
     <section
       id="cta"
       className="text-center px-16 py-48 relative overflow-hidden z-10"
-      style={{ background: 'rgba(10,10,10,0.6)', backdropFilter: 'blur(20px)' }}
     >
       {/* Radial glow */}
       <div
