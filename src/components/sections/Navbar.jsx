@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from '../../i18n/useTranslation'
 
-export default function Navbar() {
+export default function Navbar({ visible }) {
   const { NAV_LINKS, SITE, UI, lang, setLang } = useTranslation()
   const [isLangOpen, setIsLangOpen] = useState(false)
   const langRef = useRef(null)
@@ -19,7 +19,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 flex items-center justify-between px-16 py-6 border-b border-white/[0.03]"
+      className={`fixed top-0 left-0 right-0 flex items-center justify-between px-16 py-6 border-b border-white/[0.03] transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+        }`}
       style={{
         zIndex: 500,
         background: 'linear-gradient(to bottom, rgba(10,10,10,0.92) 0%, transparent 100%)',
