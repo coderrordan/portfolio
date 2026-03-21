@@ -1,3 +1,5 @@
+@import './nexus-ui/themes/personal.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,9 +11,9 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: #0a0a0a;
-  color: #f0ece4;
-  font-family: 'DM Sans', sans-serif;
+  background: var(--nexus-bg-primary);
+  color: var(--nexus-text-primary);
+  font-family: var(--nexus-font-sans);
   overflow-x: hidden;
   cursor: none;
 }
@@ -24,7 +26,7 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 2;
-  opacity: 0.45;
+  opacity: var(--nexus-noise-opacity);
 }
 
 /* ─── CUSTOM CLIP-PATH BUTTON ─── */
@@ -54,19 +56,19 @@ body::before {
 
 /* ─── TERMINAL ─── */
 .t-line   { display: block; }
-.t-prompt { color: #e8720c; }
-.t-ok     { color: #4ade80; }
-.t-warn   { color: #f59e0b; }
-.t-key    { color: #60a5fa; }
-.t-val    { color: #f0ece4; }
-.t-str    { color: #4ade80; }
-.t-muted  { color: #8b949e; }
+.t-prompt { color: var(--nexus-accent-primary); }
+.t-ok     { color: var(--nexus-success); }
+.t-warn   { color: var(--nexus-warning); }
+.t-key    { color: var(--nexus-info); }
+.t-val    { color: var(--nexus-text-primary); }
+.t-str    { color: var(--nexus-success); }
+.t-muted  { color: var(--nexus-text-secondary); }
 .t-spacer { height: 0.6rem; display: block; }
 .t-cursor {
   display: inline-block;
   width: 9px;
   height: 1.1em;
-  background: #f0ece4;
+  background: var(--nexus-text-primary);
   vertical-align: middle;
   animation: blink 1s step-end infinite;
 }
@@ -88,11 +90,7 @@ body::before {
   animation: scrollLine 2s ease-in-out infinite;
 }
 
-/* ─── ANIMATIONS ─── */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
+/* ─── ANIMATIONS (portfolio-specific; fadeUp + blink come from nexus-ui/tokens/animations.css) ─── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -100,8 +98,4 @@ body::before {
 @keyframes scrollLine {
   0%, 100% { transform: scaleY(1);   opacity: 1; }
   50%      { transform: scaleY(0.5); opacity: 0.3; }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
