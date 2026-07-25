@@ -26,15 +26,22 @@ test('commercial content stays concise and focused', () => {
   assert.equal(it.HERO.ctas[0].label, 'Parlami del tuo brand')
   assert.equal(it.DIAGNOSIS.items.length, 3)
   assert.equal(it.SERVICES.scopes.length, 3)
+  assert.deepEqual(it.SERVICES.scopes.map(({ title, kicker }) => [title, kicker]), [
+    ['Intervento operativo', 'A progetto'],
+    ['Account Management', 'Continuativo'],
+    ['Consulenza personalizzata', 'Una tantum'],
+  ])
+  assert.equal(it.SERVICES.cta, 'Parlami del tuo brand')
   assert.equal(it.CASE_STUDIES.items.length, 3)
   assert.ok(it.CASE_STUDIES.confidentiality.length > 40)
+  assert.equal(it.ABOUT.media.label, 'Daniele / @LotusRetreat a Krimml')
   assert.deepEqual(it.NAV_LINKS.map(({ label }) => label), [
     'Cosa risolvo',
+    'Chi sono',
     'Servizi',
     'Metodo',
     'Risultati',
     'Il sistema',
-    'Chi sono',
   ])
 })
 

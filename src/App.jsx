@@ -17,11 +17,11 @@ function AppContent() {
       <main id="main-content" className="site-main">
         <Hero />
         <Diagnosis />
+        <About />
         <Services />
         <Process />
         <CaseStudies />
         <SkalebidOS />
-        <About />
         <CtaSection />
       </main>
       <div className="site-main"><Footer /></div>

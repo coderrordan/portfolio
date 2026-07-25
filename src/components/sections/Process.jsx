@@ -5,39 +5,41 @@ import SectionLabel from '../ui/SectionLabel'
 
 export default function Process() {
   const { PROCESS } = useTranslation()
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(-1)
   const listRef = useRef(null)
 
   useEffect(() => {
     const steps = [...(listRef.current?.querySelectorAll('li') || [])]
+    const visibleSteps = new Set()
     const observer = new IntersectionObserver((entries) => {
-      const visible = entries.find((entry) => entry.isIntersecting)
-      if (visible) setActive(Number(visible.target.dataset.step))
-    }, { rootMargin: '-35% 0px -45% 0px', threshold: 0.15 })
+      entries.forEach((entry) => {
+        const index = Number(entry.target.dataset.step)
+        if (entry.isIntersecting) visibleSteps.add(index)
+        else visibleSteps.delete(index)
+      })
+      setActive(visibleSteps.size ? Math.min(...visibleSteps) : -1)
+    }, { rootMargin: '-35% 0px -64% 0px', threshold: 0 })
     steps.forEach((step) => observer.observe(step))
     return () => observer.disconnect()
   }, [])
 
   return (
     <section id="process" className="process-section section-pad">
-      <div className="page-shell">
+      <div className="page-shell process-content">
         <div className="section-intro process-intro">
           <div><SectionLabel num={PROCESS.label}>{PROCESS.sectionTitle}</SectionLabel><h2>{PROCESS.heading}</h2></div>
-          <p>{PROCESS.subtext}</p>
         </div>
         <div className="process-layout">
           <ol ref={listRef} className="process-route">
             {PROCESS.steps.map((step, index) => (
               <li key={step.num} data-step={index} className={active === index ? 'is-active' : ''}>
                 <span className="route-num">{step.num}</span>
-                <div><h3>{step.title}</h3><p>{step.desc}</p></div>
-                <strong><i aria-hidden="true" />{step.output}</strong>
+                <div className="process-step-copy"><h3>{step.title}</h3><p>{step.desc}</p></div>
               </li>
             ))}
           </ol>
-          <div className="process-visual">
-            <MethodParticles symbol={PROCESS.steps[active].symbol} />
-            <div><span>{PROCESS.steps[active].num}</span><strong>{PROCESS.steps[active].title}</strong></div>
+          <div className="process-particles">
+            <MethodParticles symbol={active < 0 ? 'scatter' : PROCESS.steps[active].symbol} />
           </div>
         </div>
       </div>

@@ -10,19 +10,22 @@ export default function Diagnosis() {
         <div className="section-intro diagnosis-intro">
           <SectionLabel num={DIAGNOSIS.label}>{DIAGNOSIS.sectionTitle}</SectionLabel>
           <h2>{DIAGNOSIS.heading}</h2>
-          <p>{DIAGNOSIS.intro}</p>
         </div>
         <div className="diagnosis-map">
           {DIAGNOSIS.items.map((item, index) => (
-            <article key={item.code} className="diagnosis-item">
-              <div className="diagnosis-code"><span>{item.code}</span><i aria-hidden="true">0{index + 1}</i></div>
-              <h3>{item.title}</h3>
+            <article key={item.title} className="diagnosis-item">
+              <div className="diagnosis-item__heading">
+                <h3>{item.title}</h3>
+                <span aria-hidden="true">0{index + 1}</span>
+              </div>
               <p>{item.desc}</p>
-              <strong><i aria-hidden="true">→</i>{item.impact}</strong>
             </article>
           ))}
         </div>
-        <p className="diagnosis-close"><span aria-hidden="true">→</span>{DIAGNOSIS.close}</p>
+        <p className="diagnosis-close">
+          <span aria-hidden="true">→</span>
+          <span>{DIAGNOSIS.close.before}<mark className="diagnosis-close__accent">{DIAGNOSIS.close.accent}</mark>{DIAGNOSIS.close.after}</span>
+        </p>
       </div>
     </section>
   )

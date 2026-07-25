@@ -58,7 +58,7 @@ export default function Navbar() {
   }, [menuOpen])
 
   useEffect(() => {
-    const desktop = window.matchMedia('(min-width: 77.5rem)')
+    const desktop = window.matchMedia('(min-width: 64rem)')
     const closeAtDesktop = (event) => {
       if (event.matches) setMenuOpen(false)
     }
@@ -85,7 +85,7 @@ export default function Navbar() {
         <div className="rail-bottom">
           <LanguageDropdown LANGUAGES={LANGUAGES} label={UI.language} lang={lang} setLang={setLang} />
           <a className="rail-contact" href={SITE.bookingUrl} target="_blank" rel="noreferrer">
-            <span>{UI.contact}</span><span aria-hidden="true">↗</span>
+            <span>{UI.contact}</span><span aria-hidden="true">→</span>
           </a>
         </div>
       </aside>
@@ -118,7 +118,7 @@ export default function Navbar() {
         </nav>
         <div className="mobile-menu-bottom">
           <LanguageDropdown LANGUAGES={LANGUAGES} label={UI.language} lang={lang} setLang={setLang} tabIndex={menuOpen ? 0 : -1} onChange={() => setMenuOpen(false)} />
-          <a href={SITE.bookingUrl} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1}>{UI.contact} ↗</a>
+          <a href={SITE.bookingUrl} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1}>{UI.contact} →</a>
         </div>
       </div>
     </>

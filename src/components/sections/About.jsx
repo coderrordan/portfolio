@@ -2,6 +2,19 @@ import { useTranslation } from '../../i18n/useTranslation'
 import MediaFrame from '../ui/MediaFrame'
 import SectionLabel from '../ui/SectionLabel'
 
+function HighlightedParagraph({ paragraph }) {
+  const highlights = new Set(paragraph.highlights)
+  const pattern = new RegExp(`(${paragraph.highlights.map((text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g')
+
+  return (
+    <p>
+      {paragraph.text.split(pattern).map((part, index) => (
+        highlights.has(part) ? <strong key={`${part}-${index}`}>{part}</strong> : part
+      ))}
+    </p>
+  )
+}
+
 export default function About() {
   const { ABOUT } = useTranslation()
 
@@ -20,13 +33,8 @@ export default function About() {
         <div className="about-copy">
           <SectionLabel num={ABOUT.label}>{ABOUT.sectionTitle}</SectionLabel>
           <h2>{ABOUT.heading.map((line) => <span key={line}>{line}</span>)}</h2>
-          <div className="about-text">{ABOUT.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-          <p className="about-question">{ABOUT.question}</p>
-          <div className="about-notes">
-            {ABOUT.notes.map((note) => (
-              <div key={note.value}><span>{note.value}</span><p><strong>{note.label}</strong>{note.text}</p></div>
-            ))}
-          </div>
+          <div className="about-text">{ABOUT.paragraphs.map((paragraph) => <HighlightedParagraph key={paragraph.text} paragraph={paragraph} />)}</div>
+          <p className="about-question"><span>{ABOUT.question.lead}</span> <strong>{ABOUT.question.accent}</strong></p>
         </div>
       </div>
     </section>

@@ -15,11 +15,11 @@ export const META = {
 
 export const NAV_LINKS = [
   { index: '01', label: 'Cosa risolvo', href: '#diagnosis' },
-  { index: '02', label: 'Servizi', href: '#services' },
-  { index: '03', label: 'Metodo', href: '#process' },
-  { index: '04', label: 'Risultati', href: '#case-studies' },
-  { index: '05', label: 'Il sistema', href: '#skalebidos' },
-  { index: '06', label: 'Chi sono', href: '#about' },
+  { index: '02', label: 'Chi sono', href: '#about' },
+  { index: '03', label: 'Servizi', href: '#services' },
+  { index: '04', label: 'Metodo', href: '#process' },
+  { index: '05', label: 'Risultati', href: '#case-studies' },
+  { index: '06', label: 'Il sistema', href: '#skalebidos' },
 ]
 
 export const LANGUAGES = [
@@ -36,74 +36,72 @@ export const HERO = {
   ],
 }
 
-export const BRAND_BUILDER = {
-  label: 'Brand builder',
-  status: 'Sistema coordinato',
-  brand: 'Il tuo brand',
-  input: 'Ingresso / 05 moduli',
-  output: 'Uscita / 01 sistema',
-  modules: ['Listing', 'PPC', 'Catalogo', 'Dati', 'Mercati'],
+export const EUROPE_NETWORK = {
+  label: 'Rete europea',
+  status: 'Mercati attivi',
+  origin: 'Origine / Italia',
+  flow: 'Ordini in movimento',
 }
 
 export const DIAGNOSIS = {
   label: '01',
   sectionTitle: 'Cosa risolvo',
   heading: 'Il problema raramente è una singola attività.',
-  intro: 'È ciò che succede quando le parti del canale smettono di lavorare insieme.',
   items: [
-    { code: 'DIR', title: 'Manca una direzione comune', desc: 'Team, agenzie e fornitori avanzano, ma non verso la stessa priorità.', impact: 'Decisioni lente' },
-    { code: 'SYS', title: 'Le leve lavorano separate', desc: 'Advertising, contenuti e catalogo si ostacolano invece di rafforzarsi.', impact: 'Budget disperso' },
-    { code: 'DAT', title: 'I dati non decidono', desc: 'I report raccontano il passato. Nessuno traduce i numeri nella prossima mossa.', impact: 'Crescita a tentativi' },
+    { title: 'Manca una direzione comune', desc: 'Team, agenzie e fornitori avanzano, ma non verso la stessa priorità.' },
+    { title: 'Le leve lavorano separate', desc: 'Advertising, contenuti e catalogo si ostacolano invece di rafforzarsi.' },
+    { title: 'I dati non decidono', desc: 'I report raccontano il passato. Nessuno traduce i numeri nella prossima mossa.' },
   ],
-  close: 'Rimetto queste parti nello stesso sistema e mi assumo la responsabilità di farlo avanzare.',
+  close: {
+    before: 'Cosa cambierebbe se queste parti tornassero a ',
+    accent: 'lavorare nello stesso sistema',
+    after: ', con qualcuno responsabile di farlo avanzare?',
+  },
 }
 
 export const SERVICES = {
-  label: '02',
+  label: '03',
   sectionTitle: 'Servizi',
   heading: 'Tre modi per lavorare insieme.',
   subtext: 'La scelta dipende dal punto in cui si trova il tuo brand, non da un listino infinito di attività.',
   scopes: [
     {
-      num: '01', featured: true, kicker: 'Continuativo', title: 'Account Management',
-      fit: 'Per chi vuole un responsabile operativo del canale Amazon.',
-      responsibilities: ['Direzione e priorità', 'PPC e contenuti', 'Catalogo e operatività', 'Analisi e confronto con il team'],
-      outcome: 'Sai cosa stiamo facendo, perché e cosa viene dopo.',
-      cta: 'Parliamo del tuo account',
+      num: '01', featured: false, kicker: 'A progetto', title: 'Intervento operativo',
+      fit: 'Per un lancio, un’espansione o un problema operativo con un perimetro e una fine chiari.',
+      responsibilities: ['Analisi e obiettivo', 'Piano di progetto', 'Esecuzione su catalogo, contenuti e PPC', 'Consegna al team'],
+      outcome: 'Un progetto chiuso bene, non una serie di attività lasciate a metà.',
     },
     {
-      num: '02', featured: false, kicker: 'A progetto', title: 'Lancio o espansione',
-      fit: 'Per un nuovo prodotto, l’ingresso su Amazon o un nuovo mercato.',
-      responsibilities: ['Ricerca e posizionamento', 'Struttura del catalogo', 'Contenuti di lancio', 'Piano advertising'],
-      outcome: 'Il lancio parte come un sistema, non come una serie di tentativi.',
-      cta: 'Raccontami il progetto',
+      num: '02', featured: true, kicker: 'Continuativo', title: 'Account Management',
+      fit: 'Per brand che vogliono una responsabilità unica e continuativa sul canale Amazon.',
+      responsibilities: ['Strategia e priorità', 'PPC, contenuti e catalogo', 'Coordinamento operativo', 'Analisi e confronto con il team'],
+      outcome: 'Il canale avanza con una direzione chiara, un responsabile e una prossima mossa.',
     },
     {
-      num: '03', featured: false, kicker: 'Mirato', title: 'Intervento operativo',
-      fit: 'Per un blocco preciso che frena vendite o lavoro del team.',
-      responsibilities: ['Diagnosi del problema', 'Piano di intervento', 'Esecuzione mirata', 'Consegna e passaggio al team'],
-      outcome: 'Chiudiamo il blocco e lasciamo una base più solida.',
-      cta: 'Mostrami il problema',
+      num: '03', featured: false, kicker: 'Una tantum', title: 'Consulenza personalizzata',
+      fit: 'Per chi deve prendere una decisione importante prima di investire tempo e budget.',
+      responsibilities: ['Audit dell’account e dei dati', 'Lettura del problema', 'Sessione strategica', 'Priorità e piano d’azione'],
+      outcome: 'Una lettura esterna, risposte chiare e un piano che puoi eseguire.',
     },
   ],
+  cta: 'Parlami del tuo brand',
 }
 
 export const PROCESS = {
-  label: '03',
+  label: '04',
   sectionTitle: 'Metodo',
   heading: 'Ogni mossa nasce da quella prima.',
-  subtext: 'Il metodo serve a ridurre i tentativi. Ogni fase lascia un output che guida la successiva.',
   steps: [
-    { num: '01', symbol: 'search', title: 'Ricerca', desc: 'Capisco mercato, domanda, margini e vincoli.', output: 'Contesto' },
-    { num: '02', symbol: 'compass', title: 'Direzione', desc: 'Scelgo dove competere e cosa viene prima.', output: 'Priorità' },
-    { num: '03', symbol: 'blueprint', title: 'Piano', desc: 'Traduco la direzione in attività, responsabilità e tempi.', output: 'Roadmap' },
-    { num: '04', symbol: 'modules', title: 'Esecuzione', desc: 'Le parti avanzano insieme e restano visibili al team.', output: 'Avanzamento' },
-    { num: '05', symbol: 'cycle', title: 'Ottimizzazione', desc: 'Leggo la risposta del mercato e correggo la rotta.', output: 'Prossima mossa' },
+    { num: '01', symbol: 'search', title: 'Ricerca', desc: 'Studio mercato, domanda, margini e vincoli per capire dove si trova l’opportunità reale.' },
+    { num: '02', symbol: 'compass', title: 'Direzione', desc: 'Metto in ordine ciò che emerge e scelgo dove competere, con una priorità chiara per il team.' },
+    { num: '03', symbol: 'blueprint', title: 'Piano', desc: 'Traduco la direzione in attività, responsabilità e tempi che tengono insieme tutto il lavoro.' },
+    { num: '04', symbol: 'modules', title: 'Esecuzione', desc: 'Faccio avanzare catalogo, contenuti e advertising come parti coordinate dello stesso sistema.' },
+    { num: '05', symbol: 'cycle', title: 'Ottimizzazione', desc: 'Leggo la risposta del mercato, correggo la rotta e trasformo ogni ciclo in una base più solida.' },
   ],
 }
 
 export const CASE_STUDIES = {
-  label: '04',
+  label: '05',
   sectionTitle: 'Risultati',
   heading: 'Tre problemi. Tre sistemi rimessi in moto.',
   intro: 'Il brand resta riservato. Il lavoro, invece, si può mostrare.',
@@ -131,7 +129,7 @@ export const CASE_STUDIES = {
 }
 
 export const SKALEBIDOS = {
-  label: '05',
+  label: '06',
   sectionTitle: 'Il sistema',
   eyebrow: 'SkalebidOS',
   heading: 'Il lavoro non si perde tra call, file e messaggi.',
@@ -147,21 +145,28 @@ export const TERMINAL_LINES = [
 ]
 
 export const ABOUT = {
-  label: '06',
+  label: '02',
   sectionTitle: 'Chi sono',
-  heading: ['Un po’ informatico.', 'Un po’ marketer.', 'Sempre curioso.'],
+  heading: ['Un po’ informatico.', 'Un po’ marketer.'],
   paragraphs: [
-    'Ho iniziato dall’informatica. Oggi studio Management e lavoro ogni giorno su Amazon. Sono mondi diversi solo in apparenza: in entrambi devi capire il sistema prima di provare a migliorarlo.',
-    'Mi piace costruire strumenti, mettere ordine nelle informazioni e conservare ciò che imparo. È il motivo per cui tratto il marketing meno come un’intuizione creativa e più come un problema da osservare, testare e correggere.',
-    'Fuori dai task resto la stessa persona: curiosa, metodica e incapace di lasciare un processo confuso quando può diventare più semplice.',
+    {
+      text: 'Ho iniziato dall’informatica e oggi studio Management a Torino. Nel mezzo ho trovato Amazon: un canale in cui dati, posizionamento e operatività devono funzionare insieme.',
+      highlights: ['informatica', 'Management', 'Amazon'],
+    },
+    {
+      text: 'È qui che il mio modo di ragionare diventa utile. Non guardo PPC, contenuti e catalogo come attività isolate. Cerco il legame tra numeri, comportamento delle persone e lavoro necessario per far avanzare il brand.',
+      highlights: ['PPC, contenuti e catalogo', 'numeri', 'comportamento delle persone'],
+    },
+    {
+      text: 'Costruisco sistemi perché le decisioni restino visibili, il lavoro sia ripetibile e ogni miglioramento non vada perso. Preferisco una base solida e risultati concreti alle soluzioni veloci che durano una settimana.',
+      highlights: ['sistemi', 'ripetibile', 'base solida e risultati concreti'],
+    },
   ],
-  question: 'La domanda da cui parto è sempre la stessa: qual è il blocco che oggi costa più opportunità al tuo brand?',
-  notes: [
-    { value: '01', label: 'Base', text: 'Informatica' },
-    { value: '02', label: 'Studio', text: 'Management' },
-    { value: '03', label: 'Ossessione utile', text: 'Sistemi che funzionano' },
-  ],
-  media: { label: 'Daniele / Torino', caption: 'Daniele Napolitano · Amazon Account Manager', alt: 'Daniele Napolitano al lavoro al computer' },
+  question: {
+    lead: 'La domanda da cui parto è sempre la stessa:',
+    accent: 'qual è il blocco che oggi costa più opportunità al tuo brand?',
+  },
+  media: { label: 'Daniele / @LotusRetreat a Krimml', caption: 'Daniele Napolitano · Amazon Account Manager', alt: 'Daniele Napolitano al computer al Lotus Retreat a Krimml' },
 }
 
 export const CTA_SECTION = {

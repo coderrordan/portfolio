@@ -11,14 +11,12 @@ function Scope({ scope, labels }) {
         <div><span>{labels.responsibility}</span><ul>{scope.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul></div>
         <div><span>{labels.outcome}</span><p>{scope.outcome}</p></div>
       </div>
-      <a className="scope-cta" href={labels.bookingUrl} target="_blank" rel="noreferrer">{scope.cta}<span aria-hidden="true">↗</span></a>
     </article>
   )
 }
 
 export default function Services() {
   const { SERVICES, SITE, UI } = useTranslation()
-  const labels = { ...UI, bookingUrl: SITE.bookingUrl }
 
   return (
     <section id="services" className="services-section section-pad">
@@ -28,7 +26,8 @@ export default function Services() {
           <h2>{SERVICES.heading}</h2>
           <p>{SERVICES.subtext}</p>
         </div>
-        <div className="scope-grid">{SERVICES.scopes.map((scope) => <Scope key={scope.num} scope={scope} labels={labels} />)}</div>
+        <div className="scope-grid">{SERVICES.scopes.map((scope) => <Scope key={scope.num} scope={scope} labels={UI} />)}</div>
+        <a className="services-cta" href={SITE.bookingUrl} target="_blank" rel="noreferrer">{SERVICES.cta}<span aria-hidden="true">→</span></a>
       </div>
     </section>
   )
