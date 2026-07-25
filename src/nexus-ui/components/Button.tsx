@@ -31,7 +31,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    'inline-flex items-center justify-center font-mono tracking-widest uppercase transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none',
+    'inline-flex items-center justify-center font-sans text-sm font-semibold tracking-wide transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none',
     variantClasses[variant],
     sizeClasses[size],
     clipped && (size === 'sm' ? 'btn-clip-sm' : 'btn-clip'),
@@ -40,7 +40,7 @@ export function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {children}
       </a>
     )

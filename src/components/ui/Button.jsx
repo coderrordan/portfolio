@@ -1,26 +1,27 @@
 import { Button } from '../../nexus-ui/components/Button.tsx'
 
-export function ButtonPrimary({ href, onClick, children, className = '' }) {
+export function ButtonPrimary({ href, onClick, children, className = '', ...props }) {
   return (
     <Button
       variant="primary"
-      clipped
       href={href}
       onClick={onClick}
-      className={`gap-3 font-bold py-4 hover:-translate-y-0.5 cursor-none ${className}`}
+      {...props}
+      className={`gap-3 px-6 py-4 text-[1.125rem] font-bold hover:-translate-y-0.5 ${className}`}
     >
       {children}
     </Button>
   )
 }
 
-export function ButtonOutline({ href, onClick, children, className = '' }) {
+export function ButtonOutline({ href, onClick, children, className = '', ...props }) {
   return (
     <Button
       variant="outline"
       href={href}
       onClick={onClick}
-      className={`gap-3 py-4 cursor-none ${className}`}
+      {...props}
+      className={`gap-2 py-3.5 ${className}`}
     >
       {children}
     </Button>

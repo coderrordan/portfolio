@@ -1,6 +1,8 @@
 # CLAUDE.md — Portfolio Daniele Napolitano
 
-**Stack**: React 18 + Vite + Tailwind CSS v3 | **Deploy**: GitHub Pages / Cloudflare Pages
+**Stack**: React 18 + Vite + Tailwind CSS v3 | **Deploy**: Cloudflare Pages (push su `main`)
+
+Leggi prima [`AGENTS.md`](AGENTS.md): contiene il posizionamento commerciale e le regole operative aggiornate del progetto. Questo file documenta soprattutto architettura e design system.
 
 ---
 

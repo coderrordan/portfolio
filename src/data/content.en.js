@@ -1,152 +1,128 @@
-// ─────────────────────────────────────────────
-//  SITE CONTENT — English version
-// ─────────────────────────────────────────────
-
 export const SITE = {
-    name: 'Daniele Napolitano',
-    title: 'Amazon Account Manager',
-    email: 'patriziodaniele.napolitano@gmail.com',
-    vat: 'IT 12741130012',
-    year: '2025',
+  name: 'Daniele Napolitano',
+  title: 'Amazon Account Manager',
+  email: 'patriziodaniele.napolitano@gmail.com',
+  bookingUrl: 'https://calendar.app.google/wPhDHVgLufgNR3JX7',
+  vat: 'IT 12741130012',
+  socials: { youtube: null, instagram: null, linkedin: null, substack: 'https://substack.com/@napolitanodaniele' },
+}
 
-    socials: {
-        youtube: 'https://www.youtube.com/@TUO_CANALE',
-        instagram: 'https://www.instagram.com/TUO_PROFILO',
-        linkedin: 'https://www.linkedin.com/in/TUO_PROFILO',
-    },
+export const META = {
+  title: 'Amazon Account Management | Daniele Napolitano',
+  description: 'I help European brands earn their space on Amazon through method, data and one accountable owner for the channel.',
+  locale: 'en_GB',
 }
 
 export const NAV_LINKS = [
-    { label: 'About', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Method', href: '#process' },
-    { label: 'Resources', href: '#newsletter' },
+  { index: '01', label: 'What I solve', href: '#diagnosis' },
+  { index: '02', label: 'Services', href: '#services' },
+  { index: '03', label: 'Method', href: '#process' },
+  { index: '04', label: 'Results', href: '#case-studies' },
+  { index: '05', label: 'The system', href: '#skalebidos' },
+  { index: '06', label: 'About me', href: '#about' },
+]
+
+export const LANGUAGES = [
+  { code: 'it', short: 'IT', label: 'Italiano' },
+  { code: 'en', short: 'EN', label: 'English' },
 ]
 
 export const HERO = {
-    badge: 'SYSTEM ONLINE // DANIELE NAPOLITANO // AMAZON SPECIALIST',
-    lines: [
-        { text: "I don't do miracles.", accent: false },
-        { text: 'I build sales', accent: true },
-        { text: 'ecosystems.', accent: true },
-    ],
-    sub: "No magic formulas. Just data, systems and positioning strategies to scale your <strong>brand on Amazon</strong>.",
-    stats: [
-        { num: '5+', label: 'Years of\nexperience' },
-        { num: '3+', label: 'Years on\nAmazon' },
-    ],
-    ctas: [
-        { label: 'Free consultation →', href: `mailto:${SITE.email}`, primary: true },
-        { label: 'Discover services →', href: '#services', primary: false },
-    ],
+  eyebrow: 'Amazon Account Management for European brands',
+  lines: ['Your brand on Amazon', 'is not improvised.'],
+  sub: 'I help European brands earn their space on Amazon through method, data and one accountable owner for the channel.',
+  ctas: [
+    { label: 'Tell me about your brand', href: SITE.bookingUrl, primary: true },
+  ],
 }
 
-export const MARQUEE_ITEMS = [
-    'Amazon PPC',
-    'Account Management',
-    'Listing Optimization',
-    'Brand Registry',
-    'Data Analytics',
-    'AI Automation',
-    'n8n',
-    'Claude Code',
-]
-
-export const ABOUT = {
-    label: '01 —',
-    sectionTitle: 'IDENTIKIT',
-    heading: ['Part engineer.', 'Part marketer.'],
-    paragraphs: [
-        "I don't approach marketing as an abstract art, but as an <strong>engineering system</strong>. For 5 years I've been analyzing user behavior and applying systems to scale.",
-        'Every useful framework, data point, and failure ends up in my <a href="#" target="_blank">Second Brain</a>: an archive that lets me connect the dots where others only see chaos.',
-    ],
+export const BRAND_BUILDER = {
+  label: 'Brand builder',
+  status: 'Coordinated system',
+  brand: 'Your brand',
+  input: 'Input / 05 modules',
+  output: 'Output / 01 system',
+  modules: ['Listing', 'PPC', 'Catalogue', 'Data', 'Markets'],
 }
 
-export const TERMINAL_LINES = [
-    { type: 'prompt', text: `> Booting Daniele_OS v${((new Date() - new Date('2001-09-17')) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1)}...` },
-    { type: 'spacer', text: '' },
-    { type: 'ok', text: '[BOOT] Core engine: OK' },
-    { type: 'ok', text: '[BOOT] Amazon A9 Algorithm: loaded' },
-    { type: 'ok', text: '[BOOT] n8n Automations: active' },
-    { type: 'ok', text: '[BOOT] Second Brain sync: complete' },
-    { type: 'warn', text: '[INFO] 5 years of patterns found' },
-    { type: 'spacer', text: '' },
-    { type: 'prompt', text: '> Query: "skill_matrix"' },
-    { type: 'spacer', text: '' },
-    { type: 'json', text: '{ <k>"amazon"</k>: [<s>"Listing Optimization"</s>, <s>"PPC"</s>, <s>"A+"</s>, <s>"Brand Registry"</s>, <s>"Reporting"</s>],' },
-    { type: 'json', text: '  <k>"tools"</k>: [<s>"Helium10"</s>, <s>"Claude Code"</s>, <s>"n8n"</s>, <s>"Skalebid LLM"</s>] }' },
-    { type: 'spacer', text: '' },
-    { type: 'prompt', text: '> Awaiting input' },
-]
+export const DIAGNOSIS = {
+  label: '01', sectionTitle: 'What I solve', heading: 'The problem is rarely one task.', intro: 'It starts when the parts of the channel stop working together.',
+  items: [
+    { code: 'DIR', title: 'There is no shared direction', desc: 'Teams, agencies and suppliers move, but not towards the same priority.', impact: 'Slow decisions' },
+    { code: 'SYS', title: 'Each lever works alone', desc: 'Advertising, content and catalogue get in each other’s way instead of reinforcing one another.', impact: 'Wasted budget' },
+    { code: 'DAT', title: 'Data does not decide', desc: 'Reports describe the past. Nobody turns the numbers into the next move.', impact: 'Trial-and-error growth' },
+  ],
+  close: 'I bring these parts back into one system and take responsibility for moving it forward.',
+}
 
 export const SERVICES = {
-    label: '02 —',
-    sectionTitle: 'OPERATIONAL MODULES',
-    heading: ['Tailored services', 'for your business'],
-    subtext: "I don't offer standard services. I implement specific protocols and frameworks to dominate your niche.",
-    cards: [
-        {
-            num: '01',
-            title: 'Amazon Account Management',
-            desc: "Amazon has its own rules, and you can't just do the bare minimum. I manage your account end-to-end: listing optimization, PPC campaigns, inventory management, review strategy and everything needed to scale sustainably.",
-            tags: ['PPC Advertising', 'Listing Optimization', 'Brand Registry', 'A+ Content', 'Reporting'],
-            fullWidth: false,
-        },
-        {
-            num: '02',
-            title: 'Strategic Copywriting',
-            desc: "There's copy that sells and copy that doesn't. I approach every text with a scientific mindset: target research, competitor analysis, testing and continuous optimization. From Amazon listings to emails, from blogs to landing pages.",
-            tags: ['Listing Copy', 'Email Marketing', 'Content Strategy', 'Brand Voice'],
-            fullWidth: true,
-        },
-    ],
-    cta: {
-        heading: 'Free, no-strings-attached consultation',
-        text: "Let's evaluate your situation together. If I can truly help, I'll tell you how. If I can't, I'll tell you that too.",
-        label: 'Book now →',
-    },
+  label: '02', sectionTitle: 'Services', heading: 'Three ways to work together.', subtext: 'The right option depends on where your brand is now, not on an endless list of tasks.',
+  scopes: [
+    { num: '01', featured: true, kicker: 'Ongoing', title: 'Account Management', fit: 'For brands that want an operational owner for their Amazon channel.', responsibilities: ['Direction and priorities', 'PPC and content', 'Catalogue and operations', 'Analysis and team alignment'], outcome: 'You know what we are doing, why, and what comes next.', cta: 'Let’s discuss your account' },
+    { num: '02', featured: false, kicker: 'Project', title: 'Launch or expansion', fit: 'For a new product, an Amazon entry or a new market.', responsibilities: ['Research and positioning', 'Catalogue structure', 'Launch content', 'Advertising plan'], outcome: 'The launch starts as one system, not a string of attempts.', cta: 'Tell me about the project' },
+    { num: '03', featured: false, kicker: 'Focused', title: 'Operational intervention', fit: 'For one clear issue that is holding back sales or the team.', responsibilities: ['Problem diagnosis', 'Intervention plan', 'Focused execution', 'Team handover'], outcome: 'We remove the constraint and leave a stronger foundation.', cta: 'Show me the problem' },
+  ],
 }
 
 export const PROCESS = {
-    label: '03 —',
-    sectionTitle: 'The Method',
-    heading: ['How I work,', 'step by step'],
-    subtext: 'A structured process that adapts to your reality, not the other way around. Every phase is designed to maximize results.',
-    steps: [
-        { num: '01', title: 'Briefing & Research', desc: 'I explore your market landscape and goals before making a single move.' },
-        { num: '02', title: 'Plan Creation', desc: 'No generic paths: a roadmap built specifically for you and your needs.' },
-        { num: '03', title: 'Execution', desc: 'We roll up our sleeves and turn ideas into tangible, measurable results.' },
-        { num: '04', title: 'Data Analysis', desc: 'Numbers, charts, reports: we understand the impact and areas for improvement.' },
-        { num: '05', title: 'Continuous Optimization', desc: 'Collected data and the latest industry insights guide every course correction.' },
-    ],
+  label: '03', sectionTitle: 'Method', heading: 'Each move starts with the one before it.', subtext: 'The method reduces guesswork. Every phase produces something that guides the next.',
+  steps: [
+    { num: '01', symbol: 'search', title: 'Research', desc: 'I understand the market, demand, margins and constraints.', output: 'Context' },
+    { num: '02', symbol: 'compass', title: 'Direction', desc: 'I choose where to compete and what comes first.', output: 'Priorities' },
+    { num: '03', symbol: 'blueprint', title: 'Plan', desc: 'I turn direction into tasks, owners and timing.', output: 'Roadmap' },
+    { num: '04', symbol: 'modules', title: 'Execution', desc: 'The parts move together and stay visible to the team.', output: 'Progress' },
+    { num: '05', symbol: 'cycle', title: 'Optimisation', desc: 'I read the market response and adjust the course.', output: 'Next move' },
+  ],
+}
+
+export const CASE_STUDIES = {
+  label: '04', sectionTitle: 'Results', heading: 'Three problems. Three systems moving again.', intro: 'The brand stays confidential. The work can still be shown.',
+  items: [
+    { num: '01', code: 'CONVERSION', visual: 'listing', title: 'The page had traffic, but failed to persuade.', situation: 'Generic content left the main objections unanswered.', intervention: 'A new hierarchy, copy and images built around real queries.', result: 'Existing demand found a page better equipped to convert it.' },
+    { num: '02', code: 'LAUNCH', visual: 'launch', title: 'The product had to launch without history.', situation: 'Positioning, catalogue and campaigns were moving on separate tracks.', intervention: 'We prepared them as one coordinated launch sequence.', result: 'The product built recurring sales and a base to develop.' },
+    { num: '03', code: 'MARKETS', visual: 'markets', title: 'Translating the listing was not enough to grow abroad.', situation: 'Each country needed different demand, messages and priorities.', intervention: 'Research and launch were adapted market by market.', result: 'Expansion became a repeatable process.' },
+  ],
+  confidentiality: 'Brands and metrics remain confidential under contractual agreements. In a qualified call I can show context and verifiable results without exposing sensitive data.',
+}
+
+export const SKALEBIDOS = {
+  label: '05', sectionTitle: 'The system', eyebrow: 'SkalebidOS', heading: 'Work does not disappear between calls, files and messages.',
+  media: { label: 'Operating system', caption: 'Anonymised view · Priorities and tasks', alt: 'SkalebidOS dashboard for managing Amazon priorities' },
+}
+
+export const TERMINAL_LINES = [
+  { type: 'ok', label: 'context', text: 'goals and constraints loaded' },
+  { type: 'ok', label: 'priority', text: 'queue sorted by impact' },
+  { type: 'ok', label: 'owner', text: 'responsibilities assigned' },
+  { type: 'ok', label: 'sop', text: 'procedures linked to work' },
+  { type: 'warn', label: 'review', text: 'next decision ready' },
+]
+
+export const ABOUT = {
+  label: '06', sectionTitle: 'About me', heading: ['Part computer scientist.', 'Part marketer.', 'Always curious.'],
+  paragraphs: [
+    'I started with computer science. Today I study Management and work on Amazon every day. They only look like different worlds: in both, you need to understand the system before trying to improve it.',
+    'I like building tools, organising information and keeping what I learn. That is why I treat marketing less like a creative hunch and more like a problem to observe, test and correct.',
+    'Away from the task list I am much the same: curious, methodical and unable to leave a confusing process alone when it could be simpler.',
+  ],
+  question: 'I always start with the same question: which constraint is costing your brand the most opportunity today?',
+  notes: [
+    { value: '01', label: 'Foundation', text: 'Computer science' },
+    { value: '02', label: 'Study', text: 'Management' },
+    { value: '03', label: 'Useful obsession', text: 'Systems that work' },
+  ],
+  media: { label: 'Daniele / Turin', caption: 'Daniele Napolitano · Amazon Account Manager', alt: 'Daniele Napolitano working at his computer' },
 }
 
 export const CTA_SECTION = {
-    eyebrow: 'Ready to grow?',
-    heading: ["Let's talk about", 'your project'],
-    text: 'The right professional can make the difference between success and failure. Free consultation, zero commitment.',
-    ctas: [
-        { label: 'Write now →', href: `mailto:${SITE.email}`, primary: true },
-        { label: 'Watch the channel →', href: SITE.socials.youtube, primary: false },
-    ],
+  eyebrow: 'Do you have a brand on Amazon?', heading: ['Let’s find what is', 'holding it back.'], text: 'We start with the most expensive problem in your account. If I can help, I will explain how. If I cannot, I will say so.', note: '30 minutes. One real problem. No standard presentation.',
+  ctas: [
+    { label: 'Tell me about your brand', href: SITE.bookingUrl, primary: true },
+  ],
 }
 
-export const NEWSLETTER = {
-    label: 'INSIGHT —',
-    sectionTitle: 'Newsletter',
-    heading: 'I constantly learn and share what I discover',
-    text: 'From time to time I send useful content for freelancers and industry professionals. No spam, I promise.',
-    disclaimer: 'Zero spam. Unsubscribe anytime.',
-    placeholder: 'your@email.com',
-    cta: 'Join →',
-}
-
-// Extra UI strings not in content objects
 export const UI = {
-    contact: 'Contact me',
-    scroll: 'Scroll',
-    thankYou: 'Thanks! ✓',
-    footerCrafted: 'Handcrafted in Italy',
-    systemOnline: 'SYSTEM ONLINE',
-    amazonSpecialist: 'AMAZON SPECIALIST',
+  menu: 'Index', close: 'Close', contact: 'Tell me about your brand', language: 'Language', home: 'Home', skip: 'Skip to content', external: 'Opens in a new tab',
+  footerLine: 'Amazon Account Management · Turin, Italy', fit: 'Who it is for', responsibility: 'What it includes', outcome: 'What changes', situation: 'Before', intervention: 'Intervention', result: 'After', confidential: 'Confidential', caseFile: 'Case',
+  terminalLabel: 'SkalebidOS operational status', terminalTitle: 'skalebid-os / account', terminalLoad: 'load operating space', terminalReady: 'system ready for the next decision', scrollDiagnostic: 'Scroll to continue', substack: 'Substack',
 }

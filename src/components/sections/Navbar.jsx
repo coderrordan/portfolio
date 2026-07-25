@@ -1,94 +1,126 @@
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from '../../i18n/useTranslation'
+import LanguageDropdown from '../ui/LanguageDropdown'
 
-export default function Navbar({ visible }) {
-  const { NAV_LINKS, SITE, UI, lang, setLang } = useTranslation()
-  const [isLangOpen, setIsLangOpen] = useState(false)
-  const langRef = useRef(null)
+export default function Navbar() {
+  const { LANGUAGES, NAV_LINKS, SITE, UI, lang, setLang } = useTranslation()
+  const [active, setActive] = useState('hero')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef(null)
+  const toggleRef = useRef(null)
+  const wasOpen = useRef(false)
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (langRef.current && !langRef.current.contains(event.target)) {
-        setIsLangOpen(false)
+    const ids = ['hero', ...NAV_LINKS.map((link) => link.href.slice(1))]
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean)
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.find((entry) => entry.isIntersecting)
+      if (visible) setActive(visible.target.id)
+    }, { rootMargin: '-35% 0px -58% 0px' })
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [NAV_LINKS])
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+      if (event.key !== 'Tab' || !menuOpen || !menuRef.current) return
+
+      const focusable = [...menuRef.current.querySelectorAll('a, button')]
+        .filter((element) => element.tabIndex !== -1 && element.offsetParent !== null)
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
       }
     }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.querySelectorAll('.site-main').forEach((region) => { region.inert = menuOpen })
+
+    if (menuOpen) {
+      requestAnimationFrame(() => menuRef.current?.querySelector('a')?.focus())
+    } else if (wasOpen.current) {
+      toggleRef.current?.focus()
+    }
+    wasOpen.current = menuOpen
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+      document.querySelectorAll('.site-main').forEach((region) => { region.inert = false })
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 77.5rem)')
+    const closeAtDesktop = (event) => {
+      if (event.matches) setMenuOpen(false)
+    }
+    desktop.addEventListener('change', closeAtDesktop)
+    return () => desktop.removeEventListener('change', closeAtDesktop)
   }, [])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 flex items-center justify-between px-16 py-6 border-b border-white/[0.03] transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-        }`}
-      style={{
-        zIndex: 500,
-        background: 'linear-gradient(to bottom, rgba(10,10,10,0.92) 0%, transparent 100%)',
-        backdropFilter: 'blur(16px)',
-      }}
-    >
-      <div className="font-mono text-sm tracking-widest text-accent uppercase">
-        DN / Portfolio
-      </div>
+    <>
+      <a href="#main-content" className="skip-link">{UI.skip}</a>
 
-      <ul className="hidden md:flex gap-10 list-none">
-        {NAV_LINKS.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              className="text-xs tracking-widest uppercase text-muted hover:text-cream transition-colors duration-300 font-medium no-underline"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div className="flex items-center gap-4">
-        {/* Language selector */}
-        {/* Language selector dropdown */}
-        <div className="relative flex items-center font-mono text-[0.65rem] tracking-widest uppercase" ref={langRef}>
-          <button
-            onClick={() => setIsLangOpen(!isLangOpen)}
-            className="flex items-center gap-1.5 px-3 py-1.5 transition-colors duration-300 cursor-pointer bg-transparent border border-white/10 hover:border-white/20 rounded-[2px] text-accent"
-          >
-            {lang}
-            <svg
-              className={`w-3 h-3 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`}
-              fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          {/* Dropdown menu */}
-          <div
-            className={`absolute top-full right-0 mt-2 py-1 min-w-[3.5rem] bg-[#111111] border border-white/10 rounded-[2px] transition-all duration-300 origin-top-right z-50 ${isLangOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'
-              }`}
-          >
-            {['it', 'en'].map((l) => (
-              <button
-                key={l}
-                onClick={() => {
-                  setLang(l)
-                  setIsLangOpen(false)
-                }}
-                className={`block w-full text-left px-3 py-2 transition-colors cursor-pointer border-none bg-transparent ${lang === l ? 'text-accent' : 'text-muted hover:text-cream hover:bg-white/5'
-                  }`}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <a
-          href={`mailto:${SITE.email}`}
-          className="font-mono text-xs tracking-widest uppercase text-bg bg-accent hover:bg-accent2 px-5 py-2.5 transition-all duration-300 btn-clip-sm no-underline"
-        >
-          {UI.contact}
+      <aside className="site-rail" aria-label={UI.menu}>
+        <a href="#hero" className="rail-logo" aria-label={UI.home}>
+          <img src="/images/logo-ndp.svg" alt="" />
         </a>
+        <nav className="rail-index">
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} className={active === link.href.slice(1) ? 'is-active' : ''}>
+              <span>{link.index}</span>
+              <strong>{link.label}</strong>
+            </a>
+          ))}
+        </nav>
+        <div className="rail-bottom">
+          <LanguageDropdown LANGUAGES={LANGUAGES} label={UI.language} lang={lang} setLang={setLang} />
+          <a className="rail-contact" href={SITE.bookingUrl} target="_blank" rel="noreferrer">
+            <span>{UI.contact}</span><span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </aside>
+
+      <header className="mobile-header">
+        <a href="#hero" className="mobile-logo" aria-label={UI.home}>
+          <img src="/images/logo-ndp.svg" alt="" />
+          <span>Daniele Napolitano</span>
+        </a>
+        <button
+          ref={toggleRef}
+          type="button"
+          className="menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span>{menuOpen ? UI.close : UI.menu}</span>
+          <span className="menu-glyph" aria-hidden="true"><i /><i /></span>
+        </button>
+      </header>
+
+      <div ref={menuRef} id="mobile-menu" className={`mobile-menu ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
+        <nav>
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} tabIndex={menuOpen ? 0 : -1}>
+              <span>{link.index}</span>{link.label}
+            </a>
+          ))}
+        </nav>
+        <div className="mobile-menu-bottom">
+          <LanguageDropdown LANGUAGES={LANGUAGES} label={UI.language} lang={lang} setLang={setLang} tabIndex={menuOpen ? 0 : -1} onChange={() => setMenuOpen(false)} />
+          <a href={SITE.bookingUrl} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1}>{UI.contact} ↗</a>
+        </div>
       </div>
-    </nav>
+    </>
   )
 }

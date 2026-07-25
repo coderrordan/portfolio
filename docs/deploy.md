@@ -23,6 +23,6 @@ Non gestiamo più il deploy manuale o tramite GitHub Pages.
 
 ## Troubleshooting
 - **Pagina bianca**: `base` in `vite.config.js` non corrisponde al nome repo
-- **404 su refresh**: non eliminare `public/404.html`
+- **404**: il sito e una single page senza route client; non usare redirect GitHub Pages o soft-404
 - **Font non caricano**: caricati da Google Fonts in `index.html`
 - **Immagini non trovate**: usare `import.meta.env.BASE_URL` come prefisso

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Daniele Napolitano - Direzione operativa Amazon</title>
+  <desc id="desc">Social card with an editorial headline and an Amazon control map in warm black, ivory, and orange.</desc>
+  <defs>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f26a2e" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#f26a2e" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#f4ecdd" stroke-opacity="0.055" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#171512"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="1030" cy="60" r="310" fill="url(#glow)"/>
+  <path d="M0 18H1200M0 612H1200" stroke="#f26a2e" stroke-width="3"/>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <g transform="translate(64 55)">
+      <rect width="50" height="50" rx="2" fill="#f26a2e"/>
+      <text x="25" y="34" fill="#171512" font-size="23" font-weight="800" text-anchor="middle">DN</text>
+      <text x="68" y="21" fill="#f4ecdd" font-size="18" font-weight="700" letter-spacing="1.2">DANIELE NAPOLITANO</text>
+      <text x="68" y="44" fill="#bdb5a8" font-size="13" font-weight="600" letter-spacing="2.4">AMAZON ACCOUNT MANAGER</text>
+    </g>
+
+    <g transform="translate(64 183)">
+      <text fill="#f26a2e" font-size="14" font-weight="700" letter-spacing="3.4">DIREZIONE OPERATIVA / AMAZON</text>
+      <text y="73" fill="#f4ecdd" font-size="62" font-weight="800" letter-spacing="-2.7">IL TUO CANALE AMAZON</text>
+      <text y="137" fill="#f4ecdd" font-size="62" font-weight="800" letter-spacing="-2.7">HA BISOGNO DI</text>
+      <text y="201" fill="#f26a2e" font-size="62" font-weight="800" letter-spacing="-2.7">UNA DIREZIONE.</text>
+      <path d="M0 235H600" stroke="#f4ecdd" stroke-opacity="0.18"/>
+      <text y="273" fill="#d5cdc0" font-size="20" font-weight="400">Strategia ed esecuzione. Una responsabilita unica.</text>
+    </g>
+
+    <g transform="translate(825 163)">
+      <circle cx="145" cy="145" r="142" fill="#1e1b17" stroke="#f4ecdd" stroke-opacity="0.16"/>
+      <circle cx="145" cy="145" r="100" fill="none" stroke="#f26a2e" stroke-opacity="0.34" stroke-dasharray="3 9"/>
+      <path d="M145 145L145 25M145 145L256 102M145 145L214 250M145 145L76 250M145 145L34 102" stroke="#f26a2e" stroke-opacity="0.7" stroke-width="2"/>
+
+      <g fill="#171512" stroke="#f4ecdd" stroke-opacity="0.38">
+        <rect x="104" y="4" width="82" height="36" rx="18"/>
+        <rect x="226" y="83" width="78" height="36" rx="18"/>
+        <rect x="178" y="238" width="92" height="36" rx="18"/>
+        <rect x="19" y="238" width="114" height="36" rx="18"/>
+        <rect x="-6" y="83" width="80" height="36" rx="18"/>
+      </g>
+      <g fill="#f4ecdd" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="0.7">
+        <text x="145" y="27">LISTING</text>
+        <text x="265" y="106">PPC</text>
+        <text x="224" y="261">MERCATI</text>
+        <text x="76" y="261">CATALOGO</text>
+        <text x="34" y="106">MARGINE</text>
+      </g>
+
+      <circle cx="145" cy="145" r="58" fill="#f26a2e"/>
+      <circle cx="145" cy="145" r="48" fill="#171512"/>
+      <text x="145" y="140" fill="#f4ecdd" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="2">UNICA</text>
+      <text x="145" y="160" fill="#f26a2e" font-size="14" font-weight="800" text-anchor="middle">DIREZIONE</text>
+
+      <g transform="translate(27 330)">
+        <rect width="236" height="50" fill="#f4ecdd"/>
+        <circle cx="25" cy="25" r="5" fill="#f26a2e"/>
+        <text x="42" y="30" fill="#171512" font-size="13" font-weight="700" letter-spacing="1.1">ACCOUNT SOTTO CONTROLLO</text>
+      </g>
+    </g>
+
+    <g transform="translate(64 574)">
+      <text fill="#8f887d" font-size="12" font-weight="700" letter-spacing="2">LISTING / PPC / CATALOGO / LANCI / MERCATI</text>
+      <text x="1072" fill="#f4ecdd" font-size="13" font-weight="700" text-anchor="end">DANIELENAPOLITANO.IT</text>
+    </g>
+  </g>
+</svg>

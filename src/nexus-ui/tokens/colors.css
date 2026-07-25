@@ -1,38 +1,31 @@
-/* nexus-ui — Color Tokens
-   Source of truth per tutti i valori visivi. Mai usare hex diretti nei componenti. */
-
 :root {
-  /* ── Superfici ── */
-  --nexus-bg-primary:    #0a0a0a;
-  --nexus-bg-secondary:  #0f0f0f;
-  --nexus-bg-surface:    #111111;
-  --nexus-bg-elevated:   #141414;
-  --nexus-bg-hover:      rgba(255, 255, 255, 0.05);
+  --nexus-bg-primary: oklch(0.135 0.008 70);
+  --nexus-bg-secondary: oklch(0.16 0.008 70);
+  --nexus-bg-surface: oklch(0.185 0.01 70);
+  --nexus-bg-elevated: oklch(0.215 0.012 70);
+  --nexus-bg-hover: oklch(0.96 0.018 78 / 0.055);
+  --nexus-paper: oklch(0.94 0.024 78);
+  --nexus-paper-muted: oklch(0.89 0.025 76);
+  --nexus-ink: oklch(0.17 0.012 68);
 
-  /* ── Testo ── */
-  --nexus-text-primary:   #f0ece4;
-  --nexus-text-secondary: #8b949e;
-  --nexus-text-muted:     #6b6560;
-  --nexus-text-inverse:   #0a0a0a;
+  --nexus-text-primary: oklch(0.94 0.022 78);
+  --nexus-text-secondary: oklch(0.72 0.018 72);
+  --nexus-text-muted: oklch(0.56 0.018 70);
+  --nexus-text-inverse: oklch(0.15 0.01 68);
 
-  /* ── Accenti ── */
-  --nexus-accent-primary: #e8720c;
-  --nexus-accent-hover:   #f59e0b;
-  --nexus-accent-subtle:  rgba(232, 114, 12, 0.15);
+  --nexus-accent-primary: oklch(0.68 0.19 49);
+  --nexus-accent-hover: oklch(0.74 0.185 53);
+  --nexus-accent-subtle: oklch(0.68 0.19 49 / 0.13);
 
-  /* ── Semantici ── */
-  --nexus-success: #4ade80;
-  --nexus-info:    #60a5fa;
-  --nexus-warning: #f59e0b;
-  --nexus-danger:  #ef4444;
-  --nexus-purple:  #c084fc;
+  --nexus-success: oklch(0.75 0.09 150);
+  --nexus-info: oklch(0.72 0.08 240);
+  --nexus-warning: oklch(0.78 0.12 78);
+  --nexus-danger: oklch(0.65 0.18 28);
+  --nexus-purple: oklch(0.68 0.12 315);
 
-  /* ── Bordi ── */
-  --nexus-border-default: #1e1e1e;
-  --nexus-border-subtle:  rgba(255, 255, 255, 0.03);
-  --nexus-border-accent:  rgba(232, 114, 12, 0.3);
-
-  /* ── Effetti ── */
-  --nexus-noise-opacity: 0.45;
+  --nexus-border-default: oklch(0.94 0.02 78 / 0.13);
+  --nexus-border-subtle: oklch(0.94 0.02 78 / 0.06);
+  --nexus-border-accent: oklch(0.68 0.19 49 / 0.42);
+  --nexus-noise-opacity: 0.16;
   --nexus-blur-strength: 16px;
 }

@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react'
+import { META as IT_META } from '../data/content'
+import { META as EN_META } from '../data/content.en'
 
 const LanguageContext = createContext()
 
@@ -15,6 +17,14 @@ export function LanguageProvider({ children }) {
     useEffect(() => {
         localStorage.setItem('portfolio-lang', lang)
         document.documentElement.lang = lang
+        const meta = lang === 'it' ? IT_META : EN_META
+        document.title = meta.title
+        document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', meta.title)
+        document.querySelector('meta[property="og:description"]')?.setAttribute('content', meta.description)
+        document.querySelector('meta[property="og:locale"]')?.setAttribute('content', meta.locale)
+        document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', meta.title)
+        document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', meta.description)
     }, [lang])
 
     return (
