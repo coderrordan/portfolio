@@ -736,9 +736,13 @@ h3 {
   text-transform: none;
 }
 
+.about-media .media-frame__viewport {
+  display: block;
+}
+
 .about-media .media-frame__image {
   object-fit: cover !important;
-  object-position: center !important;
+  object-position: 50% 50% !important;
 }
 
 .about-heading h2 {
