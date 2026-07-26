@@ -99,7 +99,7 @@ export default function Navbar() {
         <button
           ref={toggleRef}
           type="button"
-          className="menu-toggle"
+          className={`menu-toggle${menuOpen ? '' : ' is-icon-only'}`}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
