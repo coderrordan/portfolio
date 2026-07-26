@@ -204,6 +204,68 @@ h3 {
   filter: invert(1);
 }
 
+/*
+ * Shared CTA hover: a solid fill sweeps in from the left edge, the label
+ * and icon lift with a small zoom, everything eases back on mouse-out.
+ * Each host class only sets --cta-sweep-fill / --cta-sweep-text to fit its
+ * own background (see .mobile-cta, .rail-contact, .services-cta below and
+ * .cta-actions a further down for the orange-background exception).
+ */
+.cta-sweep {
+  --cta-sweep-fill: var(--nexus-ink);
+  --cta-sweep-text: var(--nexus-paper);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.cta-sweep::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--cta-sweep-fill);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.cta-sweep:hover::before,
+.cta-sweep:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.cta-sweep__content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+  transition: color 320ms ease, transform 420ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.rail-contact .cta-sweep__content,
+.cta-actions a .cta-sweep__content {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cta-sweep:hover .cta-sweep__content,
+.cta-sweep:focus-visible .cta-sweep__content {
+  transform: scale(1.035);
+  color: var(--cta-sweep-text);
+}
+
+.cta-sweep__icon {
+  display: inline-flex;
+  transition: transform 420ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.cta-sweep:hover .cta-sweep__icon,
+.cta-sweep:focus-visible .cta-sweep__icon {
+  transform: translateX(0.3rem);
+}
+
 .mobile-cta {
   display: flex;
   min-height: 2.5rem;
@@ -586,6 +648,10 @@ h3 {
 
 .diagnosis-intro {
   grid-template-columns: 1fr;
+}
+
+.diagnosis-intro h2 {
+  max-width: 24ch;
 }
 
 .diagnosis-map {
@@ -1310,10 +1376,11 @@ h3 {
 }
 
 .cta-actions a {
+  --cta-sweep-fill: var(--nexus-paper);
+  --cta-sweep-text: var(--nexus-ink);
   display: inline-flex;
   min-height: 3.4rem;
   align-items: center;
-  justify-content: space-between;
   gap: 1.5rem;
   border: 1px solid var(--nexus-ink);
   padding-inline: 1.2rem;
@@ -1321,17 +1388,11 @@ h3 {
   font-size: var(--text-body);
   font-weight: 700;
   text-decoration: none;
-  transition: background 180ms ease, color 180ms ease;
 }
 
 .cta-actions a:first-child {
   background: var(--nexus-ink);
   color: var(--nexus-paper);
-}
-
-.cta-actions a:hover {
-  background: var(--nexus-paper);
-  color: var(--nexus-ink);
 }
 
 .cta-copy small {
@@ -1678,10 +1739,6 @@ h3 {
     transition: min-height 280ms ease, padding 280ms ease, font-size 280ms ease;
   }
 
-  .rail-contact:hover {
-    background: var(--nexus-accent-hover);
-  }
-
 }
 
 @media (min-width: 90rem) {
@@ -1978,7 +2035,6 @@ h3 {
 }
 
 .services-cta {
-  position: relative;
   display: grid;
   width: 100%;
   min-height: 5.5rem;
@@ -1992,24 +2048,17 @@ h3 {
   font-weight: 700;
   text-align: center;
   text-decoration: none;
-  transition: background 180ms ease, color 180ms ease;
 }
 
-.services-cta span {
+.services-cta .cta-sweep__icon {
   position: absolute;
   right: clamp(1.5rem, 3vw, 2.5rem);
   color: var(--nexus-ink);
   font-size: 1.5rem;
-  transition: transform 180ms ease;
 }
 
-.services-cta:hover {
-  background: var(--nexus-ink);
-  color: var(--nexus-paper);
-}
-
-.services-cta:hover span {
-  transform: translateX(0.4rem);
+.services-cta:hover .cta-sweep__icon,
+.services-cta:focus-visible .cta-sweep__icon {
   color: var(--nexus-accent-primary);
 }
 
@@ -2499,7 +2548,7 @@ h3 {
   }
 
   .process-particles {
-    left: 66%;
+    left: 72%;
     width: min(30vw, 28rem);
     height: min(52vh, 28rem);
   }

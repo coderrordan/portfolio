@@ -84,8 +84,8 @@ export default function Navbar() {
         </nav>
         <div className="rail-bottom">
           <LanguageDropdown LANGUAGES={LANGUAGES} label={UI.language} lang={lang} setLang={setLang} />
-          <a className="rail-contact" href={SITE.bookingUrl} target="_blank" rel="noreferrer">
-            <span>{UI.contact}</span><span aria-hidden="true">→</span>
+          <a className="rail-contact cta-sweep" href={SITE.bookingUrl} target="_blank" rel="noreferrer">
+            <span className="cta-sweep__content"><span>{UI.contact}</span><span className="cta-sweep__icon" aria-hidden="true">→</span></span>
           </a>
         </div>
       </aside>
@@ -95,7 +95,9 @@ export default function Navbar() {
           <img src="/images/logo-ndp.svg" alt="" />
           <span>Daniele Napolitano</span>
         </a>
-        <a href={SITE.bookingUrl} target="_blank" rel="noreferrer" className={`mobile-cta${menuOpen ? ' is-hidden' : ''}`}>PARLIAMONE</a>
+        <a href={SITE.bookingUrl} target="_blank" rel="noreferrer" className={`mobile-cta cta-sweep${menuOpen ? ' is-hidden' : ''}`}>
+          <span className="cta-sweep__content">PARLIAMONE</span>
+        </a>
         <button
           ref={toggleRef}
           type="button"

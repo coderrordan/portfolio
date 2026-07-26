@@ -27,7 +27,9 @@ export default function Services() {
           <p>{SERVICES.subtext}</p>
         </div>
         <div className="scope-grid" data-reveal="group">{SERVICES.scopes.map((scope) => <Scope key={scope.num} scope={scope} labels={UI} />)}</div>
-        <a className="services-cta" data-reveal href={SITE.bookingUrl} target="_blank" rel="noreferrer">{SERVICES.cta}<span aria-hidden="true">→</span></a>
+        <a className="services-cta cta-sweep" data-reveal href={SITE.bookingUrl} target="_blank" rel="noreferrer">
+          <span className="cta-sweep__content">{SERVICES.cta}</span><span className="cta-sweep__icon" aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
   )

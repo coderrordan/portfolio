@@ -11,7 +11,9 @@ export default function CaseStudies() {
         <div className="section-intro cases-intro" data-reveal>
           <SectionLabel num={CASE_STUDIES.label}>{CASE_STUDIES.sectionTitle}</SectionLabel>
           <h2 className="cases-heading">
-            {CASE_STUDIES.heading.first} {CASE_STUDIES.heading.secondBefore}{' '}
+            {CASE_STUDIES.heading.first}
+            <br />
+            {CASE_STUDIES.heading.secondBefore}{' '}
             <strong>{CASE_STUDIES.heading.accent}</strong> {CASE_STUDIES.heading.secondAfter}
           </h2>
           <p>{CASE_STUDIES.intro}</p>

@@ -10,7 +10,11 @@ export default function CtaSection() {
         <div className="cta-copy" data-reveal>
           <p>{CTA_SECTION.text}</p>
           <div className="cta-actions">
-            {CTA_SECTION.ctas.map((cta) => <a key={cta.href} href={cta.href} target="_blank" rel="noreferrer">{cta.label}<span aria-hidden="true">→</span></a>)}
+            {CTA_SECTION.ctas.map((cta) => (
+              <a key={cta.href} className="cta-sweep" href={cta.href} target="_blank" rel="noreferrer">
+                <span className="cta-sweep__content">{cta.label}<span className="cta-sweep__icon" aria-hidden="true">→</span></span>
+              </a>
+            ))}
           </div>
           <small>{CTA_SECTION.note}</small>
         </div>

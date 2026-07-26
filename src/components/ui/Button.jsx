@@ -7,7 +7,7 @@ export function ButtonPrimary({ href, onClick, children, className = '', ...prop
       href={href}
       onClick={onClick}
       {...props}
-      className={`gap-3 px-6 py-4 text-[1.125rem] font-bold hover:-translate-y-0.5 ${className}`}
+      className={`gap-3 px-6 py-4 text-[1.125rem] font-bold ${className}`}
     >
       {children}
     </Button>

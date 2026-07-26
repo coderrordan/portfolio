@@ -16,7 +16,7 @@ export default function Hero() {
           <h1>{HERO.lines.map((line, index) => <span key={line} className={index === HERO.lines.length - 1 ? 'accent-line' : ''}>{line}</span>)}</h1>
           <p className="hero-sub">{HERO.sub}</p>
           <div className="hero-actions">
-            <ButtonPrimary href={HERO.ctas[0].href} target="_blank" rel="noreferrer">{HERO.ctas[0].label} <span aria-hidden="true">→</span></ButtonPrimary>
+            <ButtonPrimary href={HERO.ctas[0].href} target="_blank" rel="noreferrer">{HERO.ctas[0].label} <span className="cta-sweep__icon" aria-hidden="true">→</span></ButtonPrimary>
           </div>
         </div>
       </div>

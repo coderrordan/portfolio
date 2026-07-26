@@ -15,7 +15,7 @@ const sizeClasses = {
 }
 
 const variantClasses = {
-  primary: 'bg-accent text-[var(--nexus-text-inverse)] hover:bg-accent-hover',
+  primary: 'cta-sweep bg-accent text-[var(--nexus-text-inverse)]',
   outline: 'border border-border text-cream hover:border-accent hover:text-accent',
   ghost:   'text-cream hover:bg-[var(--nexus-bg-hover)]',
   danger:  'bg-danger text-white hover:opacity-90',
@@ -38,17 +38,19 @@ export function Button({
     className,
   )
 
+  const content = variant === 'primary' ? <span className="cta-sweep__content">{children}</span> : children
+
   if (href) {
     return (
       <a href={href} className={classes} {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
-        {children}
+        {content}
       </a>
     )
   }
 
   return (
     <button className={classes} {...props}>
-      {children}
+      {content}
     </button>
   )
 }
