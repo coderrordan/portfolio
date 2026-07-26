@@ -61,7 +61,7 @@ test('Europe map behaves as an unframed hero background', async () => {
   assert.match(css, /\.process-route::after\s*\{[^}]*border-right:[^}]*border-bottom:/s)
   assert.match(css, /\.process-route::before\s*\{[^}]*left:\s*1\.375rem/s)
   assert.match(css, /\.process-route::after\s*\{[^}]*left:\s*1\.375rem/s)
-  assert.match(css, /\.process-particles\s*\{[^}]*bottom:\s*0/s)
+  assert.match(css, /\.process-particles\s*\{[^}]*position:\s*fixed/s)
   assert.match(css, /@media \(min-width: 48rem\)[\s\S]*?\.process-route::before\s*\{[^}]*top:\s*clamp\(7rem,\s*17vh,\s*9\.5rem\)/s)
   assert.match(css, /\.process-route li\.is-active \.process-step-copy\s*\{[^}]*transform:\s*translateX\(0\.5rem\)/s)
   assert.doesNotMatch(css, /\.process-route li\.is-active\s*\{[^}]*transform:/s)

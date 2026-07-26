@@ -6,7 +6,9 @@ import SectionLabel from '../ui/SectionLabel'
 export default function Process() {
   const { PROCESS } = useTranslation()
   const [active, setActive] = useState(-1)
+  const [sectionVisible, setSectionVisible] = useState(false)
   const listRef = useRef(null)
+  const sectionRef = useRef(null)
 
   useEffect(() => {
     const steps = [...(listRef.current?.querySelectorAll('li') || [])]
@@ -18,13 +20,21 @@ export default function Process() {
         else visibleSteps.delete(index)
       })
       setActive(visibleSteps.size ? Math.min(...visibleSteps) : -1)
-    }, { rootMargin: '-28% 0px -71% 0px', threshold: 0 })
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 })
     steps.forEach((step) => observer.observe(step))
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return undefined
+    const observer = new IntersectionObserver(([entry]) => setSectionVisible(entry.isIntersecting), { threshold: 0 })
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="process" className="process-section section-pad">
+    <section id="process" ref={sectionRef} className="process-section section-pad">
       <div className="page-shell process-content">
         <div className="section-intro process-intro" data-reveal>
           <div><SectionLabel num={PROCESS.label}>{PROCESS.sectionTitle}</SectionLabel><h2>{PROCESS.heading}</h2></div>
@@ -38,8 +48,8 @@ export default function Process() {
               </li>
             ))}
           </ol>
-          <div className="process-particles" data-reveal="visual">
-            <MethodParticles symbol={active < 0 ? 'amazon' : PROCESS.steps[active].symbol} />
+          <div className={`process-particles${sectionVisible ? ' is-visible' : ''}`}>
+            <MethodParticles symbol={active < 0 ? 'amazon' : PROCESS.steps[active].symbol} visible={sectionVisible} />
           </div>
         </div>
       </div>

@@ -204,9 +204,16 @@ function createShape(symbol, width, height) {
   return normalize(points)
 }
 
-export default function MethodParticles({ symbol }) {
+export default function MethodParticles({ symbol, visible }) {
   const canvasRef = useRef(null)
   const stateRef = useRef({ particles: [], target: [] })
+  const visibleRef = useRef(visible)
+  const syncRef = useRef(() => {})
+
+  useEffect(() => {
+    visibleRef.current = visible
+    syncRef.current()
+  }, [visible])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -216,7 +223,6 @@ export default function MethodParticles({ symbol }) {
     let frame
     let width = 0
     let height = 0
-    let visible = false
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     let reducedMotion = mediaQuery.matches
     const accent = getComputedStyle(document.documentElement).getPropertyValue('--nexus-accent-primary').trim() || '#e8720c'
@@ -243,14 +249,15 @@ export default function MethodParticles({ symbol }) {
 
     const tick = () => {
       const moving = render()
-      if (visible && moving) frame = requestAnimationFrame(tick)
+      if (visibleRef.current && moving) frame = requestAnimationFrame(tick)
     }
 
     const syncAnimation = () => {
       cancelAnimationFrame(frame)
       const moving = render()
-      if (!reducedMotion && visible && moving) frame = requestAnimationFrame(tick)
+      if (!reducedMotion && visibleRef.current && moving) frame = requestAnimationFrame(tick)
     }
+    syncRef.current = syncAnimation
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect()
@@ -267,22 +274,16 @@ export default function MethodParticles({ symbol }) {
       syncAnimation()
     }
 
-    const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting
-      syncAnimation()
-    }, { rootMargin: '150px' })
     const handleMotionChange = (event) => {
       reducedMotion = event.matches
       syncAnimation()
     }
 
     resize()
-    observer.observe(canvas)
     mediaQuery.addEventListener('change', handleMotionChange)
     window.addEventListener('resize', resize)
     return () => {
       cancelAnimationFrame(frame)
-      observer.disconnect()
       mediaQuery.removeEventListener('change', handleMotionChange)
       window.removeEventListener('resize', resize)
     }
