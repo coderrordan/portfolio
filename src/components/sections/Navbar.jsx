@@ -104,7 +104,7 @@ export default function Navbar() {
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <span>{menuOpen ? UI.close : ''}</span>
+          {menuOpen && <span>{UI.close}</span>}
           <span className="menu-glyph" aria-hidden="true"><i /><i /><i /></span>
         </button>
       </header>
