@@ -52,7 +52,7 @@ export default function About() {
             alt={ABOUT.media.alt}
             label={ABOUT.media.label}
             caption={ABOUT.media.caption}
-            ratio="1 / 1"
+            ratio="2 / 3"
           />
           <nav className="about-socials" aria-label={UI.socials}>
             {publishedSocials.map(({ id, label }) => (

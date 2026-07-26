@@ -1431,6 +1431,7 @@ h3 {
 
   .about-grid {
     grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+    row-gap: 0;
   }
 
   .about-heading {
@@ -1495,6 +1496,7 @@ h3 {
   .os-workspace {
     grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
     align-items: center;
+    row-gap: 0;
   }
 
   .os-label {
@@ -2491,7 +2493,8 @@ h3 {
 
   .os-workspace {
     grid-template-columns: minmax(0, 1.08fr) minmax(23rem, 0.92fr);
-    gap: clamp(2rem, 4vw, 5rem);
+    column-gap: clamp(2rem, 4vw, 5rem);
+    row-gap: 0;
   }
 }
 
@@ -2640,10 +2643,10 @@ h3 {
   }
 
   .process-particles .method-particles {
-    position: absolute;
-    inset: 0;
-    height: auto;
-    opacity: 0.16;
+    position: sticky;
+    top: 0;
+    height: 100%;
+    opacity: 0.28;
   }
 
   .os-workspace {
@@ -2660,6 +2663,10 @@ h3 {
 
   .about-media {
     max-width: none;
+  }
+
+  .about-media .media-frame__viewport {
+    aspect-ratio: 1 / 1 !important;
   }
 
   .about-grid {
