@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="site-footer" data-reveal>
       <div><img src="/images/logo-ndp.svg" alt="" /><strong>{SITE.name}</strong></div>
-      <p>© {new Date().getFullYear()} · {UI.footerLine}<br />P.IVA {SITE.vat}</p>
+      <p>© {new Date().getFullYear()} · {UI.footerLine} · P.IVA {SITE.vat}</p>
       <div className="footer-links">
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </div>

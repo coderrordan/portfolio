@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from '../../i18n/useTranslation'
 import MethodParticles from '../ui/MethodParticles'
 import SectionLabel from '../ui/SectionLabel'
@@ -48,11 +49,15 @@ export default function Process() {
               </li>
             ))}
           </ol>
-          <div className={`process-particles${sectionVisible ? ' is-visible' : ''}`}>
-            <MethodParticles symbol={active < 0 ? 'amazon' : PROCESS.steps[active].symbol} visible={sectionVisible} />
-          </div>
         </div>
       </div>
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <div className={`process-particles${sectionVisible ? ' is-visible' : ''}`}>
+            <MethodParticles symbol={active < 0 ? 'amazon' : PROCESS.steps[active].symbol} visible={sectionVisible} />
+          </div>,
+          document.body,
+        )}
     </section>
   )
 }
