@@ -104,7 +104,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span>{menuOpen ? UI.close : ''}</span>
-          <span className="menu-glyph" aria-hidden="true"><i /><i /></span>
+          <span className="menu-glyph" aria-hidden="true"><i /><i /><i /></span>
         </button>
       </header>
 
