@@ -732,6 +732,7 @@ h3 {
 
 .about-media .media-frame__image {
   object-fit: cover;
+  object-position: center;
 }
 
 .about-heading h2 {
