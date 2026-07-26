@@ -20,6 +20,7 @@ export const NAV_LINKS = [
   { index: '04', label: 'Method', href: '#process' },
   { index: '05', label: 'Results', href: '#case-studies' },
   { index: '06', label: 'The system', href: '#skalebidos' },
+  { index: '07', label: 'Let\'s talk', href: '#cta' },
 ]
 
 export const LANGUAGES = [
@@ -122,7 +123,7 @@ export const ABOUT = {
     lead: 'I always start with the same question:',
     accent: 'which constraint is costing your brand the most opportunity today?',
   },
-  media: { label: 'Daniele / @LotusRetreat a Krimml', caption: 'Daniele Napolitano · Amazon Account Manager', alt: 'Daniele Napolitano working at his computer at the Lotus Retreat in Krimml' },
+  media: { label: 'Daniele / @LotusRetreat a Krimml', caption: null, alt: 'Daniele Napolitano working at his computer at the Lotus Retreat in Krimml' },
 }
 
 export const CTA_SECTION = {

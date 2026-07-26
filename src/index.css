@@ -626,7 +626,7 @@ h3 {
   min-width: 0;
   order: 2;
   max-width: 30rem;
-  box-shadow: -1.25rem 1.25rem 0 var(--nexus-accent-subtle);
+  box-shadow: -0.75rem 0.75rem 0 var(--nexus-accent-subtle);
 }
 
 .media-frame {
@@ -2549,6 +2549,16 @@ h3 {
   .process-particles .method-particles {
     transform: none;
     opacity: 0.16;
+    top: 8vh;
+    height: 84vh;
+  }
+
+  .os-console {
+    order: -1;
+  }
+
+  .about-media .media-frame__viewport {
+    aspect-ratio: 3 / 2 !important;
   }
 
   .case-scene__visual {

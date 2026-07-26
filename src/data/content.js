@@ -20,6 +20,7 @@ export const NAV_LINKS = [
   { index: '04', label: 'Metodo', href: '#process' },
   { index: '05', label: 'Risultati', href: '#case-studies' },
   { index: '06', label: 'Il sistema', href: '#skalebidos' },
+  { index: '07', label: 'Parliamone', href: '#cta' },
 ]
 
 export const LANGUAGES = [
@@ -166,7 +167,7 @@ export const ABOUT = {
     lead: 'La domanda da cui parto è sempre la stessa:',
     accent: 'qual è il blocco che oggi costa più opportunità al tuo brand?',
   },
-  media: { label: 'Daniele / @LotusRetreat a Krimml', caption: 'Daniele Napolitano · Amazon Account Manager', alt: 'Daniele Napolitano al computer al Lotus Retreat a Krimml' },
+  media: { label: 'Daniele / @LotusRetreat a Krimml', caption: null, alt: 'Daniele Napolitano al computer al Lotus Retreat a Krimml' },
 }
 
 export const CTA_SECTION = {
