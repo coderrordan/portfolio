@@ -178,6 +178,7 @@ h3 {
   height: 4.75rem;
   align-items: center;
   justify-content: space-between;
+  gap: 0.65rem;
   border-bottom: 1px solid var(--nexus-border-default);
   background: oklch(0.135 0.008 70 / 0.94);
   padding-inline: 1.25rem;
