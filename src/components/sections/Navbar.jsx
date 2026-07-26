@@ -95,7 +95,7 @@ export default function Navbar() {
           <img src="/images/logo-ndp.svg" alt="" />
           <span>Daniele Napolitano</span>
         </a>
-        <a href={SITE.bookingUrl} target="_blank" rel="noreferrer" className="mobile-cta">{UI.contact}</a>
+        <a href={SITE.bookingUrl} target="_blank" rel="noreferrer" className={`mobile-cta${menuOpen ? ' is-hidden' : ''}`}>PARLIAMONE</a>
         <button
           ref={toggleRef}
           type="button"
