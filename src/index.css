@@ -202,6 +202,21 @@ h3 {
   filter: invert(1);
 }
 
+.mobile-cta {
+  display: flex;
+  min-height: 2.5rem;
+  align-items: center;
+  padding-inline: 1rem;
+  background: var(--nexus-accent-primary);
+  color: var(--nexus-ink);
+  font-family: var(--nexus-font-mono);
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
 .menu-toggle {
   display: flex;
   min-width: 5.5rem;
@@ -220,21 +235,35 @@ h3 {
 }
 
 .menu-glyph {
-  display: grid;
+  position: relative;
   width: 1.4rem;
-  gap: 0.35rem;
+  height: 0.85rem;
 }
 
 .menu-glyph i {
-  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: 100%;
   height: 1px;
   background: currentColor;
-  transition: transform 240ms ease;
+  transition: transform 240ms ease, opacity 180ms ease;
+}
+
+.menu-glyph i:first-child {
+  transform: translateY(calc(-50% - 0.425rem));
+}
+
+.menu-glyph i:nth-child(2) {
+  transform: translateY(-50%);
+}
+
+.menu-glyph i:last-child {
+  transform: translateY(calc(-50% + 0.425rem));
 }
 
 .menu-toggle[aria-expanded='true'] .menu-glyph i:first-child {
-  transform: translateY(calc(0.35rem + 1px)) rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
 }
 
 .menu-toggle[aria-expanded='true'] .menu-glyph i:nth-child(2) {
@@ -242,7 +271,7 @@ h3 {
 }
 
 .menu-toggle[aria-expanded='true'] .menu-glyph i:last-child {
-  transform: translateY(calc(-0.35rem - 1px)) rotate(-45deg);
+  transform: translateY(-50%) rotate(-45deg);
 }
 
 .mobile-menu {
