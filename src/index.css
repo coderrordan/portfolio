@@ -2595,8 +2595,8 @@ h3 {
     order: -1;
   }
 
-  .about-media .media-frame__viewport {
-    aspect-ratio: 3 / 2 !important;
+  .about-media {
+    max-width: none;
   }
 
   .case-scene__visual {
