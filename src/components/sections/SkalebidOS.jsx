@@ -9,9 +9,11 @@ export default function SkalebidOS() {
     <section id="skalebidos" className="os-section section-pad">
       <div className="page-shell">
         <div className="os-workspace">
+          <div className="os-label" data-reveal>
+            <SectionLabel num={SKALEBIDOS.label}>{SKALEBIDOS.sectionTitle}</SectionLabel>
+          </div>
           <div data-reveal="visual"><SystemCard /></div>
           <div className="os-console" data-reveal>
-            <SectionLabel num={SKALEBIDOS.label}>{SKALEBIDOS.sectionTitle}</SectionLabel>
             <h2>{SKALEBIDOS.heading}</h2>
             <p className="os-description">{SKALEBIDOS.description}</p>
           </div>

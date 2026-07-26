@@ -42,13 +42,17 @@ export default function About() {
   return (
     <section id="about" className="about-section section-pad">
       <div className="page-shell about-grid">
+        <div className="about-heading" data-reveal>
+          <SectionLabel num={ABOUT.label}>{ABOUT.sectionTitle}</SectionLabel>
+          <h2>{ABOUT.heading.map((line) => <span key={line}>{line}</span>)}</h2>
+        </div>
         <div className="about-media" data-reveal="visual">
           <MediaFrame
             src="/images/daniele-al-pc.avif"
             alt={ABOUT.media.alt}
             label={ABOUT.media.label}
             caption={ABOUT.media.caption}
-            ratio="2 / 3"
+            ratio="3 / 4"
           />
           <nav className="about-socials" aria-label={UI.socials}>
             {publishedSocials.map(({ id, label }) => (
@@ -58,9 +62,7 @@ export default function About() {
             ))}
           </nav>
         </div>
-        <div className="about-copy" data-reveal>
-          <SectionLabel num={ABOUT.label}>{ABOUT.sectionTitle}</SectionLabel>
-          <h2>{ABOUT.heading.map((line) => <span key={line}>{line}</span>)}</h2>
+        <div className="about-body" data-reveal>
           <div className="about-text">{ABOUT.paragraphs.map((paragraph) => <HighlightedParagraph key={paragraph.text} paragraph={paragraph} />)}</div>
           <p className="about-question"><span>{ABOUT.question.lead}</span> <strong>{ABOUT.question.accent}</strong></p>
         </div>
