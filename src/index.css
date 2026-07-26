@@ -2629,10 +2629,10 @@ h3 {
   }
 
   .process-particles .method-particles {
-    transform: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
     opacity: 0.16;
-    top: 1vh;
-    height: 98vh;
   }
 
   .os-workspace {
