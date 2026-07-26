@@ -52,11 +52,13 @@ Il preset Tailwind è in `src/nexus-ui/tailwind.preset.js` — già incluso in `
 Nelle classi CSS custom (`.t-ok`, `.t-key`, ecc.) usa `var(--nexus-*)` direttamente.
 
 ### Font
-| Classe        | Font             | Uso                          |
-|---------------|------------------|------------------------------|
-| `font-sans`   | DM Sans          | Body, headline hero          |
-| `font-serif`  | Playfair Display | Titoli sezione, numeri stat  |
-| `font-mono`   | Space Mono       | Badge, label, CTA, terminale |
+| Classe        | Font             | Uso                                  |
+|---------------|------------------|---------------------------------------|
+| `font-sans`   | Figtree          | Body, testo UI                       |
+| `font-serif`  | Funnel Display   | Titoli sezione, numeri stat, hero h1 |
+| `font-mono`   | Red Hat Mono     | Badge, label, CTA, terminale         |
+
+Caricati via Google Fonts in `index.html`. Dettagli e uso completo → [`../brandkit/DESIGN.md`](../brandkit/DESIGN.md).
 
 ### z-index
 `GridCanvas` 0 → `ParticlesCanvas` 1 → `body::before` noise 2 → sezioni 10 → Navbar 500 → Cursor 9998/9 → Intro 9000
@@ -101,3 +103,4 @@ Dopo ogni sync aggiorna la data in `src/nexus-ui/README.md`.
 - Deploy e troubleshooting → [`docs/deploy.md`](docs/deploy.md)
 - Architettura canvas → [`docs/canvas.md`](docs/canvas.md)
 - Come aggiornare contenuti / i18n → [`docs/content.md`](docs/content.md)
+- Stile grafico / design language → [`../brandkit/DESIGN.md`](../brandkit/DESIGN.md) (brandkit condiviso, non solo portfolio)
