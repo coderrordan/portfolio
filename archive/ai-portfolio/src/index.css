@@ -1,0 +1,101 @@
+@import './nexus-ui/themes/personal.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── GOOGLE FONTS already loaded in index.html ─── */
+
+/* ─── BASE ─── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--nexus-bg-primary);
+  color: var(--nexus-text-primary);
+  font-family: var(--nexus-font-sans);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 2;
+  opacity: var(--nexus-noise-opacity);
+}
+
+/* ─── CUSTOM CLIP-PATH BUTTON ─── */
+.btn-clip {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-clip-sm {
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* ─── TERMINAL ─── */
+.t-line   { display: block; }
+.t-prompt { color: var(--nexus-accent-primary); }
+.t-ok     { color: var(--nexus-success); }
+.t-warn   { color: var(--nexus-warning); }
+.t-key    { color: var(--nexus-info); }
+.t-val    { color: var(--nexus-text-primary); }
+.t-str    { color: var(--nexus-success); }
+.t-muted  { color: var(--nexus-text-secondary); }
+.t-spacer { height: 0.6rem; display: block; }
+.t-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  background: var(--nexus-text-primary);
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── SECTION LABEL ─── */
+.section-label::before {
+  content: attr(data-num);
+  opacity: 0.3;
+  margin-right: 0.8rem;
+}
+
+/* ─── MARQUEE ─── */
+.marquee-track {
+  animation: marquee 22s linear infinite;
+}
+
+/* ─── HERO SCROLL INDICATOR ─── */
+.hero-scroll-line {
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+/* ─── ANIMATIONS (portfolio-specific; fadeUp + blink come from nexus-ui/tokens/animations.css) ─── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(1);   opacity: 1; }
+  50%      { transform: scaleY(0.5); opacity: 0.3; }
+}

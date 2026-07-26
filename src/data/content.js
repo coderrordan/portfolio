@@ -4,7 +4,7 @@ export const SITE = {
   email: 'patriziodaniele.napolitano@gmail.com',
   bookingUrl: 'https://calendar.app.google/wPhDHVgLufgNR3JX7',
   vat: 'IT 12741130012',
-  socials: { youtube: null, instagram: null, linkedin: null, substack: 'https://substack.com/@napolitanodaniele' },
+  socials: { youtube: 'https://www.youtube.com/@daniele.napolitano', instagram: 'https://www.instagram.com/daniele.p.napolitano/', linkedin: 'https://www.linkedin.com/in/daniele-p-napolitano', substack: 'https://substack.com/@napolitanodaniele' },
 }
 
 export const META = {
@@ -28,11 +28,11 @@ export const LANGUAGES = [
 ]
 
 export const HERO = {
-  eyebrow: 'Amazon Account Management per brand europei',
+  eyebrow: 'Amazon Account Management',
   lines: ['Il tuo brand su Amazon', 'non si improvvisa.'],
   sub: 'Aiuto i brand europei a conquistare il loro spazio su Amazon con metodo, dati e una responsabilità unica sul canale.',
   ctas: [
-    { label: 'Parlami del tuo brand', href: SITE.bookingUrl, primary: true },
+    { label: 'Parlami del tuo progetto', href: SITE.bookingUrl, primary: true },
   ],
 }
 
@@ -62,7 +62,7 @@ export const DIAGNOSIS = {
 export const SERVICES = {
   label: '03',
   sectionTitle: 'Servizi',
-  heading: 'Tre modi per lavorare insieme.',
+  heading: { text: 'Tre modi per lavorare', accent: 'insieme.' },
   subtext: 'La scelta dipende dal punto in cui si trova il tuo brand, non da un listino infinito di attività.',
   scopes: [
     {
@@ -84,7 +84,7 @@ export const SERVICES = {
       outcome: 'Una lettura esterna, risposte chiare e un piano che puoi eseguire.',
     },
   ],
-  cta: 'Parlami del tuo brand',
+  cta: 'Parlami del tuo progetto',
 }
 
 export const PROCESS = {
@@ -103,45 +103,45 @@ export const PROCESS = {
 export const CASE_STUDIES = {
   label: '05',
   sectionTitle: 'Risultati',
-  heading: 'Tre problemi. Tre sistemi rimessi in moto.',
-  intro: 'Il brand resta riservato. Il lavoro, invece, si può mostrare.',
+  heading: { first: 'Tre problemi.', secondBefore: 'Tre', accent: 'sistemi', secondAfter: 'rimessi in moto.' },
+  intro: 'Brand e metriche restano riservati per accordi contrattuali. In una call qualificata posso mostrare il contesto e i risultati verificabili senza esporre dati sensibili.',
   items: [
     {
-      num: '01', code: 'CONVERSION', visual: 'listing', title: 'La pagina riceveva traffico, ma non convinceva.',
-      situation: 'Contenuti generici e obiezioni lasciate senza risposta.',
-      intervention: 'Nuova gerarchia, copy e immagini costruiti sulle query reali.',
-      result: 'La domanda esistente ha trovato una pagina più capace di convertirla.',
+      num: '01', visual: 'listing', title: 'Un integratore italiano parlava al pubblico sbagliato.',
+      objective: 'Riallineare un listing rimasto indietro con la domanda italiana attuale e con il pubblico più vicino all’acquisto.',
+      intervention: 'Abbiamo rifatto il set immagini, aggiornato il posizionamento SEO sulle query del 2026 e corretto messaggio e gerarchia della pagina.',
+      result: 'Il prodotto ha ora una pagina aggiornata, coerente con le ricerche e i bisogni del pubblico a cui deve parlare.',
     },
     {
-      num: '02', code: 'LAUNCH', visual: 'launch', title: 'Il prodotto doveva partire senza storico.',
-      situation: 'Posizionamento, catalogo e campagne procedevano su binari diversi.',
-      intervention: 'Li abbiamo preparati come un’unica sequenza di lancio.',
-      result: 'Il prodotto ha costruito vendite ricorrenti e una base da sviluppare.',
+      num: '02', visual: 'launch', title: 'Un brand ha lanciato da zero una cassetta per la lievitazione.',
+      objective: 'Entrare nel mercato italiano partendo da zero: nessun posizionamento di categoria, nessuna immagine e nessuno storico advertising.',
+      intervention: 'Abbiamo costruito posizionamento, listing e immagini con procedure proprietarie di generazione e revisione, poi coordinato il lancio advertising.',
+      result: 'Il prodotto ha raggiunto circa 10.000 € di vendite settimanali nella sola Italia.',
     },
     {
-      num: '03', code: 'MARKETS', visual: 'markets', title: 'Tradurre il listing non bastava per crescere fuori.',
-      situation: 'Ogni paese richiedeva domanda, messaggi e priorità diverse.',
-      intervention: 'Ricerca e lancio sono stati adattati mercato per mercato.',
-      result: 'L’espansione è diventata un processo replicabile.',
+      num: '03', visual: 'markets', title: 'Lo stesso prodotto doveva parlare a 4 mercati diversi.',
+      objective: 'Lanciare le cassette in Spagna, Germania e Francia senza limitarsi a tradurre il listing italiano.',
+      intervention: 'Abbiamo analizzato query, recensioni e linguaggio di ogni paese, adattando listing, immagini e tono di voce al pubblico locale.',
+      result: 'Tre lanci localizzati, ciascuno costruito sulla domanda e sulle aspettative reali del proprio mercato.',
     },
   ],
-  confidentiality: 'Brand e metriche restano riservati per accordi contrattuali. In una call qualificata posso mostrare il contesto e i risultati verificabili senza esporre dati sensibili.',
 }
 
 export const SKALEBIDOS = {
   label: '06',
   sectionTitle: 'Il sistema',
-  eyebrow: 'SkalebidOS',
   heading: 'Il lavoro non si perde tra call, file e messaggi.',
-  media: { label: 'Sistema operativo', caption: 'Vista anonimizzata · Priorità e attività', alt: 'Dashboard SkalebidOS per la gestione delle priorità Amazon' },
+  description: 'Un sistema costruito su anni di lavoro Amazon, che collega procedure, dati e responsabilità. Quando ogni parte lavora insieme, l’effetto complessivo è maggiore della somma delle singole attività.',
+  media: { label: 'SkalebidOS', caption: null, alt: 'Dashboard SkalebidOS per la gestione delle priorità Amazon' },
 }
 
 export const TERMINAL_LINES = [
-  { type: 'ok', label: 'contesto', text: 'obiettivi e vincoli caricati' },
-  { type: 'ok', label: 'priorità', text: 'coda ordinata per impatto' },
-  { type: 'ok', label: 'owner', text: 'responsabilità assegnate' },
-  { type: 'ok', label: 'sop', text: 'procedure collegate al lavoro' },
-  { type: 'warn', label: 'review', text: 'prossima decisione pronta' },
+  { type: 'ok', label: 'context', text: 'informazioni brand caricate' },
+  { type: 'ok', label: 'context', text: 'best practice da prodotti comparabili importate' },
+  { type: 'ok', label: 'next', text: 'creazione listing pianificata' },
+  { type: 'ok', label: 'sop', text: 'procedura stesura copy collegata' },
+  { type: 'ok', label: 'ai', text: 'analisi e prima bozza assistite' },
+  { type: 'warn', label: 'review', text: 'listing in approvazione' },
 ]
 
 export const ABOUT = {
@@ -170,17 +170,17 @@ export const ABOUT = {
 }
 
 export const CTA_SECTION = {
-  eyebrow: 'Hai un brand su Amazon?',
-  heading: ['Vediamo cosa lo', 'sta trattenendo.'],
-  text: 'Partiamo dal problema più costoso del tuo account. Se posso aiutarti, ti spiego come. Se non posso, te lo dico.',
-  note: '30 minuti. Un problema reale. Nessuna presentazione standard.',
+  eyebrow: 'Già su Amazon o pronto a entrarci?',
+  heading: ['Capiamo qual è', 'la prossima mossa.'],
+  text: 'Se il canale è bloccato, individuiamo cosa lo frena. Se devi ancora partire, valutiamo dove c’è spazio e come entrarci con criterio. Se non posso aiutarti, te lo dirò direttamente.',
+  note: '30 minuti. Contesto reale, priorità chiare, nessuna presentazione standard.',
   ctas: [
-    { label: 'Parlami del tuo brand', href: SITE.bookingUrl, primary: true },
+    { label: 'Parlami del tuo progetto', href: SITE.bookingUrl, primary: true },
   ],
 }
 
 export const UI = {
-  menu: 'Indice', close: 'Chiudi', contact: 'Parlami del tuo brand', language: 'Lingua', home: 'Inizio', skip: 'Vai al contenuto', external: 'Si apre in una nuova scheda',
-  footerLine: 'Amazon Account Management · Torino, Italia', fit: 'Per chi è', responsibility: 'Cosa comprende', outcome: 'Cosa cambia', situation: 'Prima', intervention: 'Intervento', result: 'Dopo', confidential: 'Riservato', caseFile: 'Caso',
-  terminalLabel: 'Stato operativo SkalebidOS', terminalTitle: 'skalebid-os / account', terminalLoad: 'carica spazio operativo', terminalReady: 'sistema pronto per la prossima decisione', scrollDiagnostic: 'Scorri per continuare', substack: 'Substack',
+  menu: 'Indice', close: 'Chiudi', contact: 'Parlami del tuo progetto', language: 'Lingua', home: 'Inizio', skip: 'Vai al contenuto', external: 'Si apre in una nuova scheda', socials: 'Social',
+  footerLine: 'Amazon Account Management', fit: 'Per chi è', responsibility: 'Cosa comprende', outcome: 'Cosa cambia', objective: 'Obiettivo', intervention: 'Intervento', result: 'Risultato', caseFile: 'Caso studio',
+  terminalLabel: 'Stato operativo SkalebidOS', terminalTitle: 'skalebid-os / account', terminalLoad: 'avvia procedura listing', terminalReady: 'sistema pronto per la prossima azione', systemDashboard: 'Mostra dashboard', systemTerminal: 'Mostra terminale', systemToggle: 'Cambia vista SkalebidOS', scrollDiagnostic: 'Scorri per continuare', substack: 'Substack',
 }

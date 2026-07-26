@@ -6,8 +6,8 @@ export default function CtaSection() {
   return (
     <section id="cta" className="cta-section">
       <div className="page-shell cta-grid">
-        <div><p className="eyebrow">{CTA_SECTION.eyebrow}</p><h2>{CTA_SECTION.heading.map((line) => <span key={line}>{line}</span>)}</h2></div>
-        <div className="cta-copy">
+        <div data-reveal><p className="eyebrow">{CTA_SECTION.eyebrow}</p><h2>{CTA_SECTION.heading.map((line) => <span key={line}>{line}</span>)}</h2></div>
+        <div className="cta-copy" data-reveal>
           <p>{CTA_SECTION.text}</p>
           <div className="cta-actions">
             {CTA_SECTION.ctas.map((cta) => <a key={cta.href} href={cta.href} target="_blank" rel="noreferrer">{cta.label}<span aria-hidden="true">↗</span></a>)}

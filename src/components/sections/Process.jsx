@@ -18,7 +18,7 @@ export default function Process() {
         else visibleSteps.delete(index)
       })
       setActive(visibleSteps.size ? Math.min(...visibleSteps) : -1)
-    }, { rootMargin: '-35% 0px -64% 0px', threshold: 0 })
+    }, { rootMargin: '-28% 0px -71% 0px', threshold: 0 })
     steps.forEach((step) => observer.observe(step))
     return () => observer.disconnect()
   }, [])
@@ -26,11 +26,11 @@ export default function Process() {
   return (
     <section id="process" className="process-section section-pad">
       <div className="page-shell process-content">
-        <div className="section-intro process-intro">
+        <div className="section-intro process-intro" data-reveal>
           <div><SectionLabel num={PROCESS.label}>{PROCESS.sectionTitle}</SectionLabel><h2>{PROCESS.heading}</h2></div>
         </div>
         <div className="process-layout">
-          <ol ref={listRef} className="process-route">
+          <ol ref={listRef} className="process-route" data-reveal>
             {PROCESS.steps.map((step, index) => (
               <li key={step.num} data-step={index} className={active === index ? 'is-active' : ''}>
                 <span className="route-num">{step.num}</span>
@@ -38,8 +38,8 @@ export default function Process() {
               </li>
             ))}
           </ol>
-          <div className="process-particles">
-            <MethodParticles symbol={active < 0 ? 'scatter' : PROCESS.steps[active].symbol} />
+          <div className="process-particles" data-reveal="visual">
+            <MethodParticles symbol={active < 0 ? 'amazon' : PROCESS.steps[active].symbol} />
           </div>
         </div>
       </div>

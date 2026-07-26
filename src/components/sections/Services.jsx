@@ -21,13 +21,13 @@ export default function Services() {
   return (
     <section id="services" className="services-section section-pad">
       <div className="page-shell">
-        <div className="section-intro services-intro">
+        <div className="section-intro services-intro" data-reveal>
           <SectionLabel num={SERVICES.label}>{SERVICES.sectionTitle}</SectionLabel>
-          <h2>{SERVICES.heading}</h2>
+          <h2>{SERVICES.heading.text} <strong>{SERVICES.heading.accent}</strong></h2>
           <p>{SERVICES.subtext}</p>
         </div>
-        <div className="scope-grid">{SERVICES.scopes.map((scope) => <Scope key={scope.num} scope={scope} labels={UI} />)}</div>
-        <a className="services-cta" href={SITE.bookingUrl} target="_blank" rel="noreferrer">{SERVICES.cta}<span aria-hidden="true">→</span></a>
+        <div className="scope-grid" data-reveal="group">{SERVICES.scopes.map((scope) => <Scope key={scope.num} scope={scope} labels={UI} />)}</div>
+        <a className="services-cta" data-reveal href={SITE.bookingUrl} target="_blank" rel="noreferrer">{SERVICES.cta}<span aria-hidden="true">→</span></a>
       </div>
     </section>
   )

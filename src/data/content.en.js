@@ -4,7 +4,7 @@ export const SITE = {
   email: 'patriziodaniele.napolitano@gmail.com',
   bookingUrl: 'https://calendar.app.google/wPhDHVgLufgNR3JX7',
   vat: 'IT 12741130012',
-  socials: { youtube: null, instagram: null, linkedin: null, substack: 'https://substack.com/@napolitanodaniele' },
+  socials: { youtube: 'https://www.youtube.com/@daniele.napolitano', instagram: 'https://www.instagram.com/daniele.p.napolitano/', linkedin: 'https://www.linkedin.com/in/daniele-p-napolitano', substack: 'https://substack.com/@napolitanodaniele' },
 }
 
 export const META = {
@@ -28,11 +28,11 @@ export const LANGUAGES = [
 ]
 
 export const HERO = {
-  eyebrow: 'Amazon Account Management for European brands',
+  eyebrow: 'Amazon Account Management',
   lines: ['Your brand on Amazon', 'is not improvised.'],
   sub: 'I help European brands earn their space on Amazon through method, data and one accountable owner for the channel.',
   ctas: [
-    { label: 'Tell me about your brand', href: SITE.bookingUrl, primary: true },
+    { label: 'Tell me about your project', href: SITE.bookingUrl, primary: true },
   ],
 }
 
@@ -58,13 +58,13 @@ export const DIAGNOSIS = {
 }
 
 export const SERVICES = {
-  label: '03', sectionTitle: 'Services', heading: 'Three ways to work together.', subtext: 'The right option depends on where your brand is now, not on an endless list of tasks.',
+  label: '03', sectionTitle: 'Services', heading: { text: 'Three ways to work', accent: 'together.' }, subtext: 'The right option depends on where your brand is now, not on an endless list of tasks.',
   scopes: [
     { num: '01', featured: false, kicker: 'Project', title: 'Operational intervention', fit: 'For a launch, expansion or operational issue with a clear scope and finish.', responsibilities: ['Analysis and objective', 'Project plan', 'Execution across catalogue, content and PPC', 'Team handover'], outcome: 'A project completed properly, not a list of half-finished tasks.' },
     { num: '02', featured: true, kicker: 'Ongoing', title: 'Account Management', fit: 'For brands seeking one continuous owner for their Amazon channel.', responsibilities: ['Strategy and priorities', 'PPC, content and catalogue', 'Operational coordination', 'Analysis and team alignment'], outcome: 'The channel moves forward with clear direction, one owner and a defined next move.' },
     { num: '03', featured: false, kicker: 'One-off', title: 'Tailored consulting', fit: 'For brands facing an important decision before investing time and budget.', responsibilities: ['Account and data audit', 'Problem assessment', 'Strategic session', 'Priorities and action plan'], outcome: 'An outside perspective, clear answers and a plan you can execute.' },
   ],
-  cta: 'Tell me about your brand',
+  cta: 'Tell me about your project',
 }
 
 export const PROCESS = {
@@ -79,26 +79,27 @@ export const PROCESS = {
 }
 
 export const CASE_STUDIES = {
-  label: '05', sectionTitle: 'Results', heading: 'Three problems. Three systems moving again.', intro: 'The brand stays confidential. The work can still be shown.',
+  label: '05', sectionTitle: 'Results', heading: { first: 'Three problems.', secondBefore: 'Three', accent: 'systems', secondAfter: 'moving again.' }, intro: 'Brands and metrics remain confidential under contractual agreements. In a qualified call I can show context and verifiable results without exposing sensitive data.',
   items: [
-    { num: '01', code: 'CONVERSION', visual: 'listing', title: 'The page had traffic, but failed to persuade.', situation: 'Generic content left the main objections unanswered.', intervention: 'A new hierarchy, copy and images built around real queries.', result: 'Existing demand found a page better equipped to convert it.' },
-    { num: '02', code: 'LAUNCH', visual: 'launch', title: 'The product had to launch without history.', situation: 'Positioning, catalogue and campaigns were moving on separate tracks.', intervention: 'We prepared them as one coordinated launch sequence.', result: 'The product built recurring sales and a base to develop.' },
-    { num: '03', code: 'MARKETS', visual: 'markets', title: 'Translating the listing was not enough to grow abroad.', situation: 'Each country needed different demand, messages and priorities.', intervention: 'Research and launch were adapted market by market.', result: 'Expansion became a repeatable process.' },
+    { num: '01', visual: 'listing', title: 'An Italian supplement was speaking to the wrong audience.', objective: 'Bring an outdated listing back in line with current Italian demand and the audience most likely to buy.', intervention: 'We rebuilt the image set, updated SEO positioning around 2026 queries and corrected the page message and hierarchy.', result: 'The product now has a current page aligned with the searches and needs of its actual audience.' },
+    { num: '02', visual: 'launch', title: 'A brand launched a pizza proofing box from scratch.', objective: 'Enter the Italian market from scratch, with no category position, product images or advertising history.', intervention: 'We built positioning, listing and images through proprietary generation and review procedures, then coordinated the advertising launch.', result: 'The product reached approximately €10,000 in weekly sales in Italy alone.' },
+    { num: '03', visual: 'markets', title: 'The same product needed to speak to 4 different markets.', objective: 'Launch the boxes in Spain, Germany and France without simply translating the Italian listing.', intervention: 'We analysed queries, reviews and language in each country, adapting the listing, images and tone of voice to the local audience.', result: 'Three localised launches, each built around the real demand and expectations of its market.' },
   ],
-  confidentiality: 'Brands and metrics remain confidential under contractual agreements. In a qualified call I can show context and verifiable results without exposing sensitive data.',
 }
 
 export const SKALEBIDOS = {
-  label: '06', sectionTitle: 'The system', eyebrow: 'SkalebidOS', heading: 'Work does not disappear between calls, files and messages.',
-  media: { label: 'Operating system', caption: 'Anonymised view · Priorities and tasks', alt: 'SkalebidOS dashboard for managing Amazon priorities' },
+  label: '06', sectionTitle: 'The system', heading: 'Work does not disappear between calls, files and messages.',
+  description: 'A system built on years of Amazon work, connecting procedures, data and responsibilities. When every part works together, the overall effect is greater than the sum of the individual activities.',
+  media: { label: 'SkalebidOS', caption: null, alt: 'SkalebidOS dashboard for managing Amazon priorities' },
 }
 
 export const TERMINAL_LINES = [
-  { type: 'ok', label: 'context', text: 'goals and constraints loaded' },
-  { type: 'ok', label: 'priority', text: 'queue sorted by impact' },
-  { type: 'ok', label: 'owner', text: 'responsibilities assigned' },
-  { type: 'ok', label: 'sop', text: 'procedures linked to work' },
-  { type: 'warn', label: 'review', text: 'next decision ready' },
+  { type: 'ok', label: 'context', text: 'brand information loaded' },
+  { type: 'ok', label: 'context', text: 'best practices from comparable products imported' },
+  { type: 'ok', label: 'next', text: 'listing creation planned' },
+  { type: 'ok', label: 'sop', text: 'copywriting procedure linked' },
+  { type: 'ok', label: 'ai', text: 'analysis and first draft assisted' },
+  { type: 'warn', label: 'review', text: 'listing awaiting approval' },
 ]
 
 export const ABOUT = {
@@ -125,14 +126,14 @@ export const ABOUT = {
 }
 
 export const CTA_SECTION = {
-  eyebrow: 'Do you have a brand on Amazon?', heading: ['Let’s find what is', 'holding it back.'], text: 'We start with the most expensive problem in your account. If I can help, I will explain how. If I cannot, I will say so.', note: '30 minutes. One real problem. No standard presentation.',
+  eyebrow: 'Already on Amazon or ready to enter?', heading: ['Let’s understand', 'the next move.'], text: 'If the channel is blocked, we identify what is holding it back. If you have yet to start, we assess where there is room and how to enter with a clear rationale. If I cannot help, I will tell you directly.', note: '30 minutes. Real context, clear priorities, no standard presentation.',
   ctas: [
-    { label: 'Tell me about your brand', href: SITE.bookingUrl, primary: true },
+    { label: 'Tell me about your project', href: SITE.bookingUrl, primary: true },
   ],
 }
 
 export const UI = {
-  menu: 'Index', close: 'Close', contact: 'Tell me about your brand', language: 'Language', home: 'Home', skip: 'Skip to content', external: 'Opens in a new tab',
-  footerLine: 'Amazon Account Management · Turin, Italy', fit: 'Who it is for', responsibility: 'What it includes', outcome: 'What changes', situation: 'Before', intervention: 'Intervention', result: 'After', confidential: 'Confidential', caseFile: 'Case',
-  terminalLabel: 'SkalebidOS operational status', terminalTitle: 'skalebid-os / account', terminalLoad: 'load operating space', terminalReady: 'system ready for the next decision', scrollDiagnostic: 'Scroll to continue', substack: 'Substack',
+  menu: 'Index', close: 'Close', contact: 'Tell me about your project', language: 'Language', home: 'Home', skip: 'Skip to content', external: 'Opens in a new tab', socials: 'Social links',
+  footerLine: 'Amazon Account Management', fit: 'Who it is for', responsibility: 'What it includes', outcome: 'What changes', objective: 'Objective', intervention: 'Intervention', result: 'Result', caseFile: 'Case study',
+  terminalLabel: 'SkalebidOS operational status', terminalTitle: 'skalebid-os / account', terminalLoad: 'start listing procedure', terminalReady: 'system ready for the next action', systemDashboard: 'Show dashboard', systemTerminal: 'Show terminal', systemToggle: 'Switch SkalebidOS view', scrollDiagnostic: 'Scroll to continue', substack: 'Substack',
 }

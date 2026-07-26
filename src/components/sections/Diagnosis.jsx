@@ -7,11 +7,11 @@ export default function Diagnosis() {
   return (
     <section id="diagnosis" className="diagnosis-section section-pad">
       <div className="page-shell">
-        <div className="section-intro diagnosis-intro">
+        <div className="section-intro diagnosis-intro" data-reveal>
           <SectionLabel num={DIAGNOSIS.label}>{DIAGNOSIS.sectionTitle}</SectionLabel>
           <h2>{DIAGNOSIS.heading}</h2>
         </div>
-        <div className="diagnosis-map">
+        <div className="diagnosis-map" data-reveal="group">
           {DIAGNOSIS.items.map((item, index) => (
             <article key={item.title} className="diagnosis-item">
               <div className="diagnosis-item__heading">
@@ -22,7 +22,7 @@ export default function Diagnosis() {
             </article>
           ))}
         </div>
-        <p className="diagnosis-close">
+        <p className="diagnosis-close" data-reveal>
           <span aria-hidden="true">→</span>
           <span>{DIAGNOSIS.close.before}<mark className="diagnosis-close__accent">{DIAGNOSIS.close.accent}</mark>{DIAGNOSIS.close.after}</span>
         </p>

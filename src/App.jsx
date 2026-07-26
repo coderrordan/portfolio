@@ -9,8 +9,11 @@ import CaseStudies from './components/sections/CaseStudies'
 import SkalebidOS from './components/sections/SkalebidOS'
 import CtaSection from './components/sections/CtaSection'
 import Footer from './components/sections/Footer'
+import { useScrollReveal } from './hooks/useScrollReveal'
 
 function AppContent() {
+  useScrollReveal()
+
   return (
     <>
       <Navbar />

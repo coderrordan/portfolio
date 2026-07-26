@@ -1,0 +1,11 @@
+/* nexus-ui — Tema Personal (dark/orange)
+   Il tema personal è il tema base: eredita tutti i valori da :root (colors.css).
+   Aggiungere qui eventuali override futuri specifici del tema personal. */
+
+@import '../tokens/colors.css';
+@import '../tokens/typography.css';
+@import '../tokens/animations.css';
+
+[data-theme="personal"] {
+  /* Eredita tutto da :root — nessun override al momento */
+}

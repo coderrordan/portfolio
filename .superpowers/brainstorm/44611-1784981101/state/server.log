@@ -1,0 +1,8 @@
+{"type":"server-started","port":58435,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:58435","screen_dir":"/Users/danielenapolitano/BusinessOS/6-content/portfolio/.superpowers/brainstorm/44611-1784981101/content","state_dir":"/Users/danielenapolitano/BusinessOS/6-content/portfolio/.superpowers/brainstorm/44611-1784981101/state"}
+{"type":"screen-added","file":"/Users/danielenapolitano/BusinessOS/6-content/portfolio/.superpowers/brainstorm/44611-1784981101/content/structure-map.html"}
+{"source":"user-event","type":"click","text":"A\n    Conversione primaHero → Casi studio → SkalebidOS → Servizi → Chi sono → Calendly. Consigliata per far decidere prima di raccontarti.","choice":"struttura","id":null,"timestamp":1784981247743}
+{"source":"user-event","type":"click","text":"A\n    Conversione primaHero → Casi studio → SkalebidOS → Servizi → Chi sono → Calendly. Consigliata per far decidere prima di raccontarti.","choice":"struttura","id":null,"timestamp":1784981248545}
+{"source":"user-event","type":"click","text":"B\n    Persona primaHero → Chi sono → Metodo → Casi studio → Servizi → Calendly. Più personale, ma più lenta nel dimostrare valore.","choice":"personale","id":null,"timestamp":1784981250938}
+{"source":"user-event","type":"click","text":"A\n    Conversione primaHero → Casi studio → SkalebidOS → Servizi → Chi sono → Calendly. Consigliata per far decidere prima di raccontarti.","choice":"struttura","id":null,"timestamp":1784981251496}
+{"type":"screen-added","file":"/Users/danielenapolitano/BusinessOS/6-content/portfolio/.superpowers/brainstorm/44611-1784981101/content/structure-refined.html"}
+{"type":"server-stopped","reason":"idle timeout"}

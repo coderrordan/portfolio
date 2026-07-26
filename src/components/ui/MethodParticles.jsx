@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const POINTS = 320
+const POINTS = 1000
 
 const seeded = (index, salt = 0) => {
   const value = Math.sin((index + 1) * 12.9898 + salt * 78.233) * 43758.5453
@@ -21,146 +21,184 @@ function thickLine(x1, y1, x2, y2, thickness, count, salt = 0) {
   })
 }
 
-function ring(cx, cy, innerRadius, outerRadius, count, start = 0, end = Math.PI * 2, salt = 0) {
+function ring(cx, cy, radius, thickness, count, start = 0, end = Math.PI * 2, salt = 0) {
   return Array.from({ length: count }, (_, index) => {
     const angle = start + (end - start) * seeded(index, salt)
-    const radius = Math.sqrt(innerRadius ** 2 + seeded(index, salt + 1) * (outerRadius ** 2 - innerRadius ** 2))
-    return { x: cx + Math.cos(angle) * radius, y: cy + Math.sin(angle) * radius }
+    const offset = (seeded(index, salt + 1) - 0.5) * thickness
+    return { x: cx + Math.cos(angle) * (radius + offset), y: cy + Math.sin(angle) * (radius + offset) }
   })
 }
 
-function ellipse(cx, cy, radiusX, radiusY, count, salt = 0) {
+function glyphStroke(glyph, cx, cy, size, count) {
+  const resolution = 320
+  const surface = document.createElement('canvas')
+  surface.width = resolution
+  surface.height = resolution
+  const context = surface.getContext('2d')
+  context.strokeStyle = '#000'
+  context.lineWidth = 18
+  context.lineJoin = 'round'
+  context.font = '900 260px Arial Black, Arial, sans-serif'
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+  context.strokeText(glyph, resolution / 2, resolution * 0.47)
+
+  const pixels = []
+  const data = context.getImageData(0, 0, resolution, resolution).data
+  for (let y = 0; y < resolution; y += 2) {
+    for (let x = 0; x < resolution; x += 2) {
+      if (data[(y * resolution + x) * 4 + 3] > 80) pixels.push({ x, y })
+    }
+  }
+
+  const scale = size / 260
   return Array.from({ length: count }, (_, index) => {
-    const angle = seeded(index, salt) * Math.PI * 2
-    const radius = Math.sqrt(seeded(index, salt + 1))
-    return { x: cx + Math.cos(angle) * radiusX * radius, y: cy + Math.sin(angle) * radiusY * radius }
+    const point = pixels[Math.floor((index / count) * pixels.length)]
+    return { x: cx + (point.x - resolution / 2) * scale, y: cy + (point.y - resolution / 2) * scale }
   })
 }
 
-function polygon(vertices, count, salt = 0) {
-  const minX = Math.min(...vertices.map(({ x }) => x))
-  const maxX = Math.max(...vertices.map(({ x }) => x))
-  const minY = Math.min(...vertices.map(({ y }) => y))
-  const maxY = Math.max(...vertices.map(({ y }) => y))
-  const result = []
-  let attempt = 0
-
-  while (result.length < count && attempt < count * 20) {
-    const point = {
-      x: minX + seeded(attempt, salt) * (maxX - minX),
-      y: minY + seeded(attempt, salt + 1) * (maxY - minY),
-    }
-    let inside = false
-    for (let i = 0, j = vertices.length - 1; i < vertices.length; j = i++) {
-      const a = vertices[i]
-      const b = vertices[j]
-      if ((a.y > point.y) !== (b.y > point.y) && point.x < ((b.x - a.x) * (point.y - a.y)) / (b.y - a.y) + a.x) inside = !inside
-    }
-    if (inside) result.push(point)
-    attempt += 1
-  }
-  return result
+function quadraticStroke(start, control, end, thickness, count, salt = 0) {
+  return Array.from({ length: count }, (_, index) => {
+    const t = seeded(index, salt)
+    const inverse = 1 - t
+    const x = inverse * inverse * start.x + 2 * inverse * t * control.x + t * t * end.x
+    const y = inverse * inverse * start.y + 2 * inverse * t * control.y + t * t * end.y
+    const dx = 2 * inverse * (control.x - start.x) + 2 * t * (end.x - control.x)
+    const dy = 2 * inverse * (control.y - start.y) + 2 * t * (end.y - control.y)
+    const length = Math.hypot(dx, dy) || 1
+    const offset = (seeded(index, salt + 1) - 0.5) * thickness
+    return { x: x - (dy / length) * offset, y: y + (dx / length) * offset }
+  })
 }
 
-function outline(vertices, thickness, count, salt = 0) {
-  const perSide = Math.ceil(count / vertices.length)
-  return vertices.flatMap((point, index) => {
+function outline(vertices, thickness, count, salt = 0, closed = true) {
+  const sides = closed ? vertices.length : vertices.length - 1
+  const perSide = Math.ceil(count / sides)
+  return Array.from({ length: sides }, (_, index) => {
     const next = vertices[(index + 1) % vertices.length]
-    return thickLine(point.x, point.y, next.x, next.y, thickness, perSide, salt + index)
-  })
-}
-
-function gear(cx, cy, radius, count, salt) {
-  const points = [
-    ...ring(cx, cy, radius * 0.55, radius * 0.76, Math.round(count * 0.52), 0, Math.PI * 2, salt),
-    ...ring(cx, cy, radius * 0.12, radius * 0.28, Math.round(count * 0.18), 0, Math.PI * 2, salt + 2),
-  ]
-  const teeth = 10
-  for (let index = 0; index < teeth; index += 1) {
-    const angle = (index / teeth) * Math.PI * 2
-    points.push(...thickLine(
-      cx + Math.cos(angle) * radius * 0.68,
-      cy + Math.sin(angle) * radius * 0.68,
-      cx + Math.cos(angle) * radius,
-      cy + Math.sin(angle) * radius,
-      radius * 0.16,
-      Math.ceil(count * 0.03),
-      salt + index + 4,
-    ))
-  }
-  return points
+    return thickLine(vertices[index].x, vertices[index].y, next.x, next.y, thickness, perSide, salt + index)
+  }).flat()
 }
 
 function normalize(points) {
-  return Array.from({ length: POINTS }, (_, index) => points[Math.floor((index / POINTS) * points.length)] || points[index % points.length])
+  return Array.from({ length: POINTS }, (_, index) => points[Math.floor((index / POINTS) * points.length)])
+}
+
+function amazonShape(width, height) {
+  const scale = Math.min(width, height)
+  const cx = width * 0.56
+  const stroke = scale * 0.035
+  const smileY = height * 0.7
+  return [
+    ...glyphStroke('a', cx, height * 0.34, scale * 0.56, 620),
+    ...quadraticStroke(
+      { x: cx - scale * 0.25, y: smileY },
+      { x: cx, y: height * 0.84 },
+      { x: cx + scale * 0.27, y: smileY },
+      stroke * 0.82,
+      280,
+      7,
+    ),
+    ...thickLine(cx + scale * 0.18, smileY - scale * 0.045, cx + scale * 0.3, smileY - scale * 0.035, stroke, 50, 9),
+    ...thickLine(cx + scale * 0.3, smileY - scale * 0.035, cx + scale * 0.27, smileY + scale * 0.085, stroke, 50, 11),
+  ]
+}
+
+function compassShape(cx, cy, size, stroke) {
+  const outer = size * 0.9
+  const diagonal = Math.SQRT1_2
+  const direction = { x: diagonal, y: -diagonal }
+  const normal = { x: diagonal, y: diagonal }
+  const needleLength = size * 0.72
+  const needleWidth = size * 0.2
+  const needleOuter = [
+    { x: cx + direction.x * needleLength, y: cy + direction.y * needleLength },
+    { x: cx + normal.x * needleWidth, y: cy + normal.y * needleWidth },
+    { x: cx - direction.x * needleLength, y: cy - direction.y * needleLength },
+    { x: cx - normal.x * needleWidth, y: cy - normal.y * needleWidth },
+  ]
+  const holeLength = size * 0.36
+  const holeWidth = size * 0.075
+  const needleInner = [
+    { x: cx + direction.x * size * 0.09, y: cy + direction.y * size * 0.09 },
+    { x: cx - direction.x * holeLength + normal.x * holeWidth, y: cy - direction.y * holeLength + normal.y * holeWidth },
+    { x: cx - direction.x * holeLength - normal.x * holeWidth, y: cy - direction.y * holeLength - normal.y * holeWidth },
+  ]
+  const ticks = [
+    [cx, cy - outer, cx, cy - outer * 0.76],
+    [cx + outer, cy, cx + outer * 0.76, cy],
+    [cx, cy + outer, cx, cy + outer * 0.76],
+    [cx - outer, cy, cx - outer * 0.76, cy],
+  ]
+  return [
+    ...ring(cx, cy, outer, stroke, 460, 0, Math.PI * 2, 12),
+    ...ticks.flatMap((tick, index) => thickLine(...tick, stroke * 1.15, 45, 18 + index)),
+    ...outline(needleOuter, stroke, 300, 24),
+    ...outline(needleInner, stroke * 0.72, 180, 30),
+  ]
+}
+
+function executionShape(cx, cy, size, stroke) {
+  return [
+    ...ring(cx, cy, size * 0.88, stroke, 600, 0, Math.PI * 2, 75),
+    ...outline([
+      { x: cx - size * 0.26, y: cy - size * 0.48 },
+      { x: cx + size * 0.48, y: cy },
+      { x: cx - size * 0.26, y: cy + size * 0.48 },
+    ], stroke, 420, 78),
+  ]
+}
+
+function optimizationShape(cx, cy, size, stroke) {
+  const rows = [
+    { y: cy - size * 0.56, knob: cx - size * 0.35 },
+    { y: cy, knob: cx + size * 0.38 },
+    { y: cy + size * 0.56, knob: cx - size * 0.05 },
+  ]
+  return rows.flatMap((row, index) => [
+    ...thickLine(cx - size * 0.92, row.y, cx + size * 0.92, row.y, stroke, 185, 84 + index * 5),
+    ...ring(row.knob, row.y, size * 0.16, stroke, 150, 0, Math.PI * 2, 87 + index * 5),
+  ])
 }
 
 function createShape(symbol, width, height) {
-  const cx = width * 0.54
-  const cy = height * 0.34
-  const size = Math.min(width, height) * 0.32
-  let points = []
+  const cx = width * 0.56
+  const cy = height * 0.42
+  const size = Math.min(width, height) * 0.43
+  const stroke = Math.max(10, size * 0.075)
+  let points
 
-  if (symbol === 'scatter') {
-    points = Array.from({ length: POINTS }, (_, index) => ({
-      x: width * (0.06 + seeded(index, 31) * 0.88),
-      y: height * (0.08 + seeded(index, 32) * 0.84),
-    }))
+  if (symbol === 'amazon') {
+    points = amazonShape(width, height)
   } else if (symbol === 'search') {
-    const lensX = cx - size * 0.18
-    const lensY = cy - size * 0.16
+    const radius = size * 0.62
+    const lensX = cx - size * 0.22
+    const lensY = cy - size * 0.2
     points = [
-      ...ring(lensX, lensY, size * 0.55, size * 0.76, 180, 0, Math.PI * 2, 2),
-      ...ellipse(lensX, lensY, size * 0.48, size * 0.48, 48, 3),
-      ...ring(lensX, lensY, size * 0.36, size * 0.43, 38, Math.PI * 1.08, Math.PI * 1.46, 4),
-      ...thickLine(cx + size * 0.28, cy + size * 0.28, cx + size * 0.98, cy + size * 0.98, size * 0.2, 86, 5),
+      ...ring(lensX, lensY, radius, stroke, 650, 0, Math.PI * 2, 8),
+      ...thickLine(lensX + radius * 0.72, lensY + radius * 0.72, cx + size * 0.85, cy + size * 0.9, stroke * 1.15, 370, 10),
     ]
   } else if (symbol === 'compass') {
-    const north = [{ x: cx, y: cy - size * 0.88 }, { x: cx + size * 0.2, y: cy + size * 0.12 }, { x: cx, y: cy - size * 0.02 }]
-    const south = [{ x: cx, y: cy + size * 0.88 }, { x: cx - size * 0.2, y: cy - size * 0.12 }, { x: cx, y: cy + size * 0.02 }]
-    points = [
-      ...ring(cx, cy, size * 0.78, size, 120, 0, Math.PI * 2, 7),
-      ...ring(cx, cy, size * 0.48, size * 0.6, 60, 0, Math.PI * 2, 8),
-      ...polygon(north, 62, 9),
-      ...polygon(south, 62, 10),
-      ...ring(cx, cy, 0, size * 0.12, 20, 0, Math.PI * 2, 11),
-      ...thickLine(cx - size, cy, cx - size * 0.78, cy, size * 0.08, 10, 12),
-      ...thickLine(cx + size * 0.78, cy, cx + size, cy, size * 0.08, 10, 13),
-    ]
+    points = compassShape(cx, cy, size, stroke)
   } else if (symbol === 'blueprint') {
-    const left = [{ x: cx - size, y: cy - size * 0.68 }, { x: cx - size * 0.34, y: cy - size * 0.84 }, { x: cx - size * 0.34, y: cy + size * 0.72 }, { x: cx - size, y: cy + size * 0.88 }]
-    const middle = [{ x: cx - size * 0.34, y: cy - size * 0.84 }, { x: cx + size * 0.34, y: cy - size * 0.68 }, { x: cx + size * 0.34, y: cy + size * 0.88 }, { x: cx - size * 0.34, y: cy + size * 0.72 }]
-    const right = [{ x: cx + size * 0.34, y: cy - size * 0.68 }, { x: cx + size, y: cy - size * 0.84 }, { x: cx + size, y: cy + size * 0.72 }, { x: cx + size * 0.34, y: cy + size * 0.88 }]
+    const left = cx - size * 0.72
+    const right = cx + size * 0.72
+    const top = cy - size * 0.86
+    const bottom = cy + size * 0.86
     points = [
-      ...polygon(left, 42, 14), ...polygon(middle, 42, 15), ...polygon(right, 42, 16),
-      ...outline(left, size * 0.06, 44, 17), ...outline(middle, size * 0.06, 44, 18), ...outline(right, size * 0.06, 44, 19),
-      ...thickLine(cx - size * 0.75, cy + size * 0.42, cx - size * 0.12, cy - size * 0.12, size * 0.07, 25, 20),
-      ...thickLine(cx - size * 0.12, cy - size * 0.12, cx + size * 0.72, cy + size * 0.28, size * 0.07, 30, 21),
-      ...ring(cx - size * 0.75, cy + size * 0.42, 0, size * 0.12, 12, 0, Math.PI * 2, 22),
-      ...ring(cx + size * 0.72, cy + size * 0.28, 0, size * 0.14, 14, 0, Math.PI * 2, 23),
+      ...outline([{ x: left, y: top }, { x: right, y: top }, { x: right, y: bottom }, { x: left, y: bottom }], stroke, 300, 24),
+      ...thickLine(left + size * 0.48, top + size * 0.48, right - size * 0.18, top + size * 0.48, stroke * 0.72, 130, 29),
+      ...thickLine(left + size * 0.48, cy, right - size * 0.18, cy, stroke * 0.72, 130, 31),
+      ...thickLine(left + size * 0.48, bottom - size * 0.48, right - size * 0.18, bottom - size * 0.48, stroke * 0.72, 130, 33),
+      ...outline([{ x: left + size * 0.14, y: top + size * 0.46 }, { x: left + size * 0.22, y: top + size * 0.55 }, { x: left + size * 0.38, y: top + size * 0.35 }], stroke * 0.72, 110, 35, false),
+      ...outline([{ x: left + size * 0.14, y: cy - size * 0.02 }, { x: left + size * 0.22, y: cy + size * 0.07 }, { x: left + size * 0.38, y: cy - size * 0.13 }], stroke * 0.72, 110, 38, false),
+      ...outline([{ x: left + size * 0.14, y: bottom - size * 0.5 }, { x: left + size * 0.22, y: bottom - size * 0.41 }, { x: left + size * 0.38, y: bottom - size * 0.61 }], stroke * 0.72, 110, 41, false),
     ]
   } else if (symbol === 'modules') {
-    points = [
-      ...gear(cx - size * 0.42, cy - size * 0.18, size * 0.62, 145, 24),
-      ...gear(cx + size * 0.48, cy + size * 0.32, size * 0.52, 120, 39),
-      ...gear(cx + size * 0.48, cy - size * 0.58, size * 0.32, 70, 54),
-    ]
+    points = executionShape(cx, cy, size, stroke)
   } else {
-    const bars = [
-      { x: cx - size * 0.46, y: cy + size * 0.18, h: size * 0.34 },
-      { x: cx - size * 0.12, y: cy - size * 0.05, h: size * 0.57 },
-      { x: cx + size * 0.22, y: cy - size * 0.35, h: size * 0.87 },
-    ]
-    points = [
-      ...ring(cx, cy, size * 0.72, size * 0.94, 170, Math.PI * 0.12, Math.PI * 1.78, 65),
-      ...polygon([{ x: cx + size * 0.92, y: cy - size * 0.38 }, { x: cx + size * 0.48, y: cy - size * 0.48 }, { x: cx + size * 0.72, y: cy - size * 0.08 }], 38, 67),
-      ...bars.flatMap((bar, index) => polygon([
-        { x: bar.x, y: cy + size * 0.52 - bar.h },
-        { x: bar.x + size * 0.22, y: cy + size * 0.52 - bar.h },
-        { x: bar.x + size * 0.22, y: cy + size * 0.52 },
-        { x: bar.x, y: cy + size * 0.52 },
-      ], 38, 70 + index)),
-    ]
+    points = optimizationShape(cx, cy, size, stroke)
   }
 
   return normalize(points)
@@ -181,38 +219,37 @@ export default function MethodParticles({ symbol }) {
     let visible = false
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     let reducedMotion = mediaQuery.matches
-    const styles = getComputedStyle(document.documentElement)
-    const accent = styles.getPropertyValue('--nexus-accent-primary').trim() || '#e8720c'
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--nexus-accent-primary').trim() || '#e8720c'
 
     const render = () => {
       context.clearRect(0, 0, width, height)
       context.fillStyle = accent
-      context.shadowColor = accent
-      context.shadowBlur = 7
+      let moving = false
       stateRef.current.particles.forEach((particle, index) => {
         const target = stateRef.current.target[index]
         if (!target) return
-        const ease = reducedMotion ? 1 : 0.075
+        if (Math.hypot(target.x - particle.x, target.y - particle.y) > 0.15) moving = true
+        const ease = reducedMotion ? 1 : 0.09
         particle.x += (target.x - particle.x) * ease
         particle.y += (target.y - particle.y) * ease
-        context.globalAlpha = 0.58 + (index % 5) * 0.08
+        context.globalAlpha = 0.72 + (index % 4) * 0.07
         context.beginPath()
-        context.arc(particle.x, particle.y, index % 9 === 0 ? 2.5 : 1.7, 0, Math.PI * 2)
+        context.arc(particle.x, particle.y, index % 11 === 0 ? 1.9 : 1.35, 0, Math.PI * 2)
         context.fill()
       })
       context.globalAlpha = 1
-      context.shadowBlur = 0
+      return moving
     }
 
     const tick = () => {
-      render()
-      frame = requestAnimationFrame(tick)
+      const moving = render()
+      if (visible && moving) frame = requestAnimationFrame(tick)
     }
 
     const syncAnimation = () => {
       cancelAnimationFrame(frame)
-      render()
-      if (!reducedMotion && visible) frame = requestAnimationFrame(tick)
+      const moving = render()
+      if (!reducedMotion && visible && moving) frame = requestAnimationFrame(tick)
     }
 
     const resize = () => {
@@ -225,7 +262,7 @@ export default function MethodParticles({ symbol }) {
       context.setTransform(ratio, 0, 0, ratio, 0, 0)
       stateRef.current.target = createShape(symbol, width, height)
       if (!stateRef.current.particles.length) {
-        stateRef.current.particles = stateRef.current.target.map(() => ({ x: Math.random() * width, y: Math.random() * height }))
+        stateRef.current.particles = stateRef.current.target.map((point) => ({ ...point }))
       }
       syncAnimation()
     }

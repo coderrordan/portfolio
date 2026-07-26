@@ -1,0 +1,38 @@
+/* nexus-ui — Color Tokens
+   Source of truth per tutti i valori visivi. Mai usare hex diretti nei componenti. */
+
+:root {
+  /* ── Superfici ── */
+  --nexus-bg-primary:    #0a0a0a;
+  --nexus-bg-secondary:  #0f0f0f;
+  --nexus-bg-surface:    #111111;
+  --nexus-bg-elevated:   #141414;
+  --nexus-bg-hover:      rgba(255, 255, 255, 0.05);
+
+  /* ── Testo ── */
+  --nexus-text-primary:   #f0ece4;
+  --nexus-text-secondary: #8b949e;
+  --nexus-text-muted:     #6b6560;
+  --nexus-text-inverse:   #0a0a0a;
+
+  /* ── Accenti ── */
+  --nexus-accent-primary: #e8720c;
+  --nexus-accent-hover:   #f59e0b;
+  --nexus-accent-subtle:  rgba(232, 114, 12, 0.15);
+
+  /* ── Semantici ── */
+  --nexus-success: #4ade80;
+  --nexus-info:    #60a5fa;
+  --nexus-warning: #f59e0b;
+  --nexus-danger:  #ef4444;
+  --nexus-purple:  #c084fc;
+
+  /* ── Bordi ── */
+  --nexus-border-default: #1e1e1e;
+  --nexus-border-subtle:  rgba(255, 255, 255, 0.03);
+  --nexus-border-accent:  rgba(232, 114, 12, 0.3);
+
+  /* ── Effetti ── */
+  --nexus-noise-opacity: 0.45;
+  --nexus-blur-strength: 16px;
+}

@@ -1,16 +1,21 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 /**
- * Attaches IntersectionObserver to all .reveal elements inside the ref'd container.
- * Call once after the DOM is ready (post-intro).
+ * Reveals declarative content once as it enters the viewport.
  */
 export function useScrollReveal() {
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) return
+
+    const root = document.documentElement
+    const elements = document.querySelectorAll('[data-reveal]')
+    root.classList.add('reveal-ready')
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            e.target.classList.add('visible')
+            e.target.setAttribute('data-revealed', 'true')
             obs.unobserve(e.target)
           }
         })
@@ -18,8 +23,11 @@ export function useScrollReveal() {
       { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
     )
 
-    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el))
+    elements.forEach((element) => obs.observe(element))
 
-    return () => obs.disconnect()
+    return () => {
+      obs.disconnect()
+      root.classList.remove('reveal-ready')
+    }
   }, [])
 }

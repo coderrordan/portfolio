@@ -1,0 +1,17 @@
+/* nexus-ui — Typography Tokens
+   I font vanno caricati dal progetto consumatore via Google Fonts in index.html:
+   Playfair Display (700, 900), DM Sans (300–900), Space Mono (400, 700) */
+
+:root {
+  --nexus-font-sans:  'DM Sans', sans-serif;
+  --nexus-font-serif: 'Playfair Display', serif;
+  --nexus-font-mono:  'Space Mono', monospace;
+
+  --nexus-text-xs:   0.75rem;   /* 12px */
+  --nexus-text-sm:   0.875rem;  /* 14px */
+  --nexus-text-base: 1rem;      /* 16px */
+  --nexus-text-lg:   1.125rem;  /* 18px */
+  --nexus-text-xl:   1.25rem;   /* 20px */
+  --nexus-text-2xl:  1.5rem;    /* 24px */
+  --nexus-text-3xl:  1.875rem;  /* 30px */
+}
