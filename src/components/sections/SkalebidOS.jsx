@@ -12,9 +12,11 @@ export default function SkalebidOS() {
           <div className="os-label" data-reveal>
             <SectionLabel num={SKALEBIDOS.label}>{SKALEBIDOS.sectionTitle}</SectionLabel>
           </div>
-          <div data-reveal="visual"><SystemCard /></div>
-          <div className="os-console" data-reveal>
+          <div className="os-title" data-reveal>
             <h2>{SKALEBIDOS.heading}</h2>
+          </div>
+          <div data-reveal="visual"><SystemCard /></div>
+          <div className="os-desc" data-reveal>
             <p className="os-description">{SKALEBIDOS.description}</p>
           </div>
         </div>
