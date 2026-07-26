@@ -2558,8 +2558,8 @@ h3 {
   .process-particles .method-particles {
     transform: none;
     opacity: 0.16;
-    top: 8vh;
-    height: 84vh;
+    top: 2vh;
+    height: 96vh;
   }
 
   .os-console {
